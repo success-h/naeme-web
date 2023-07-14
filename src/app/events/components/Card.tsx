@@ -24,7 +24,7 @@ export const Card = ({ event }: Props) => {
   return (
     <div
       data-aos="fade-up"
-      className="card card-compact w-80 h-96 bg-base-100 shadow-xl"
+      className="card card-compact w-80 h-96 shadow-xl bg-white border-none"
     >
       <figure>
         <Image

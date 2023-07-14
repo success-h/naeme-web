@@ -118,8 +118,8 @@ export function Navbar() {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-          <ul className="bg-zinc-900 z-30 menu p-4 w-80 h-full gap-y-4 text-gray-500">
-            <div className="px-2 cursor-pointer my-5">
+          <ul className="bg-zinc-900 z-30 menu p-4 w-64 h-full gap-y-4 text-gray-500">
+            <Link href="/" className="px-2 cursor-pointer my-5">
               <Image
                 className="sm:h-[17px] justify-center self-center"
                 src="/logo.svg"
@@ -127,7 +127,7 @@ export function Navbar() {
                 width={120}
                 alt="logo"
               />
-            </div>
+            </Link>
             <li>
               <Link href="/events">Explore events</Link>
             </li>
@@ -157,7 +157,7 @@ export function Navbar() {
                   </label>
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                    className="bg-zinc-800 menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52"
                   >
                     <li>
                       <Link href="/dashboard" className="justify-between">

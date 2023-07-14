@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 export default async function Home() {
   return (
-    <main className="">
+    <main className="bg-gray-100">
       <Hero />
     </main>
   );

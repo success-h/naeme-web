@@ -6,6 +6,7 @@ import { Card } from "./Card";
 import { useRouter } from "next/navigation";
 import { EventDataTypes } from "../../../../typings";
 import { getEvents, getSearchedEvents } from "@/app/functions/functions";
+import { Skeleton } from "./Skeleton";
 
 type Props = {
   params?: {
@@ -19,7 +20,7 @@ type Props = {
 export function Events({ params, searchParams }: Props) {
   const [input, setInput] = useState("");
   const [events, setEvents] = useState<EventDataTypes[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(false);
   const [nextPage, setNextPage] = useState<string | null>("");
   const router = useRouter();
@@ -50,9 +51,11 @@ export function Events({ params, searchParams }: Props) {
     e.preventDefault();
     if (input) {
       setSearch(true);
+      setLoading(true);
       const data = await getSearchedEvents(input);
       if (data) {
         console.log(data);
+        setLoading(false);
         setEvents(data.results);
       }
     }
@@ -71,16 +74,19 @@ export function Events({ params, searchParams }: Props) {
   useEffect(() => {
     (async () => {
       if (!searchParams?.search) {
+        setLoading(true);
         const data = await getEvents();
         if (data) {
+          setLoading(false);
           setEvents(data.results);
         }
       }
       if (searchParams?.search) {
+        setLoading(true);
         setInput(searchParams.search);
         const data = await getSearchedEvents(searchParams?.search);
         if (data) {
-          console.log(data);
+          setLoading(false);
           setEvents(data.results);
         }
       }
@@ -118,7 +124,9 @@ export function Events({ params, searchParams }: Props) {
         {events?.map((event) => (
           <Card event={event} key={event.id} />
         ))}
+        {loading && [1, 2, 3]?.map((event) => <Skeleton />)}
       </div>
+
       <div className="mt-10 flex items-center justify center">
         {!loading && (
           <button
