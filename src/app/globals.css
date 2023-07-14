@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: #27272a;
+  background: #ffffff;
+}
+
+.swiper-button-next {
+  background-image: url("/arrow-right.png");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  margin-right: 50px;
+}
+
+.swiper-button-next::after {
+  display: none;
+}
+.swiper-button-prev {
+  background-image: url("/arrow-left.png");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  margin-left: 50px;
+}
+
+.swiper-button-prev::after {
+  display: none;
+}
+
+@media (max-width: 776px) {
+  .swiper-button-prev {
+    margin-left: 0px;
+  }
+  .swiper-button-next {
+    margin-right: 0px;
+  }
+}
