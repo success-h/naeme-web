@@ -14,9 +14,10 @@ type Props = {
   searchParams?: {
     search?: string;
   };
+  data: any;
 };
 
-export function Events({ params, searchParams }: Props) {
+export function Events({ params, searchParams, data }: Props) {
   const [input, setInput] = useState("");
   const [events, setEvents] = useState<EventDataTypes[]>([]);
   const [loading, setLoading] = useState(false);
@@ -60,28 +61,19 @@ export function Events({ params, searchParams }: Props) {
     setInput("");
     router.push("/events");
     const data = await getEvents();
+    console.log({ data });
     if (data) {
       setEvents(data.results);
     }
   };
 
   useEffect(() => {
-    (async () => {
-      if (!searchParams?.search) {
-        const data = await getEvents();
-        if (data) {
-          setEvents(data.results);
-        }
-      }
-      if (searchParams?.search) {
-        setInput(searchParams.search);
-        const data = await getSearchedEvents(searchParams?.search);
-        if (data) {
-          console.log(data);
-          setEvents(data.results);
-        }
-      }
-    })();
+    if (data) {
+      setEvents(data.results);
+    }
+    if (searchParams?.search) {
+      setInput(searchParams.search);
+    }
   }, []);
 
   return (
