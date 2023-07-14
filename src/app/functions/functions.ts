@@ -8,6 +8,7 @@ export const formatter = new Intl.NumberFormat("en-NG", {
 export const getEvents = async () => {
   const response = await api.get("/events");
   const data = await response.data;
+  console.log("get event function:", { data });
   if (!data) {
     return null;
   }

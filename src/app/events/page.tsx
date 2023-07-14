@@ -1,4 +1,4 @@
-import { getEvents, getSearchedEvents } from "../functions/functions";
+"use client";
 import { Events } from "./components/Events";
 
 type Props = {
@@ -10,22 +10,6 @@ type Props = {
   };
 };
 
-export default async function EventsPage({ params, searchParams }: Props) {
-  async function getMyEvents() {
-    if (!searchParams?.search) {
-      const data: any = await getEvents();
-      console.log({ data });
-      return data;
-    }
-    if (searchParams?.search) {
-      const data = await getSearchedEvents(searchParams?.search);
-      if (data) {
-        console.log({ data });
-        return data;
-      }
-    }
-  }
-  const data = await getMyEvents();
-  console.log("page component", { data });
-  return <Events params={params} searchParams={searchParams} data={data} />;
+export default function EventsPage({ params, searchParams }: Props) {
+  return <Events params={params} searchParams={searchParams} />;
 }

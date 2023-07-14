@@ -14,13 +14,13 @@ type Props = {
   searchParams?: {
     search?: string;
   };
-  data: any;
 };
 
-export function Events({ params, searchParams, data }: Props) {
+export function Events({ params, searchParams }: Props) {
   const [input, setInput] = useState("");
   const [events, setEvents] = useState<EventDataTypes[]>([]);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState(false);
   const [nextPage, setNextPage] = useState<string | null>("");
   const router = useRouter();
 
@@ -49,6 +49,7 @@ export function Events({ params, searchParams, data }: Props) {
   const handleSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (input) {
+      setSearch(true);
       const data = await getSearchedEvents(input);
       if (data) {
         console.log(data);
@@ -58,22 +59,32 @@ export function Events({ params, searchParams, data }: Props) {
   };
 
   const clearSearch = async () => {
+    setSearch(false);
     setInput("");
     router.push("/events");
     const data = await getEvents();
-    console.log({ data });
     if (data) {
       setEvents(data.results);
     }
   };
 
   useEffect(() => {
-    if (data) {
-      setEvents(data.results);
-    }
-    if (searchParams?.search) {
-      setInput(searchParams.search);
-    }
+    (async () => {
+      if (!searchParams?.search) {
+        const data = await getEvents();
+        if (data) {
+          setEvents(data.results);
+        }
+      }
+      if (searchParams?.search) {
+        setInput(searchParams.search);
+        const data = await getSearchedEvents(searchParams?.search);
+        if (data) {
+          console.log(data);
+          setEvents(data.results);
+        }
+      }
+    })();
   }, []);
 
   return (
@@ -92,14 +103,14 @@ export function Events({ params, searchParams, data }: Props) {
           className="h-full outline-none rounded-4xl text-lg w-full bg-gray-100 pr-4"
           placeholder="Quick search events"
         />
-        {input ? (
-          <span onClick={clearSearch}>
+        {search ? (
+          <button onClick={clearSearch}>
             <IoMdClose size={24} />
-          </span>
+          </button>
         ) : (
-          <span>
+          <button type="submit">
             <FiSearch size={24} />
-          </span>
+          </button>
         )}
       </form>
 
