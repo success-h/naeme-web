@@ -85,7 +85,7 @@ export function Events({ params, searchParams }: Props) {
   }, []);
 
   return (
-    <main className="max-w-screen-xl mx-auto py-10 min-h-screen max-xl:px-6">
+    <main className="max-w-screen-xl mx-auto py-10 min-h-screen max-xl:px-6 pt-28">
       <form
         // @ts-ignore
         onSubmit={handleSubmit}

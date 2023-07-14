@@ -118,7 +118,7 @@ export function Navbar() {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-          <ul className="bg-zinc-900 z-30 menu p-4 w-80 h-full">
+          <ul className="bg-zinc-900 z-30 menu p-4 w-80 h-full gap-y-4 text-gray-500">
             <div className="px-2 cursor-pointer my-5">
               <Image
                 className="sm:h-[17px] justify-center self-center"
@@ -141,43 +141,39 @@ export function Navbar() {
             </li>
             <div>
               {user ? (
-                <li>
-                  {user ? (
-                    <div className="dropdown dropdown-bottom text-gray-600">
-                      <label
-                        tabIndex={0}
-                        className="btn btn-ghost btn-circle avatar"
-                      >
-                        <div className="w-10 rounded-full">
-                          <Image
-                            width={40}
-                            alt="image"
-                            height={40}
-                            src={user.image}
-                          />
-                        </div>
-                      </label>
-                      <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-                      >
-                        <li>
-                          <Link href="/dashboard" className="justify-between">
-                            Profile
-                          </Link>
-                        </li>
-
-                        <li>
-                          <button onClick={logout}>Logout</button>
-                        </li>
-                      </ul>
+                <div className="dropdown dropdown-bottom text-gray-600">
+                  <label
+                    tabIndex={0}
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10 rounded-full">
+                      <Image
+                        width={40}
+                        alt="image"
+                        height={40}
+                        src={user.image}
+                      />
                     </div>
-                  ) : (
-                    <Link href="/signin">Sign In</Link>
-                  )}
-                </li>
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                  >
+                    <li>
+                      <Link href="/dashboard" className="justify-between">
+                        Profile
+                      </Link>
+                    </li>
+
+                    <li>
+                      <button onClick={logout}>Logout</button>
+                    </li>
+                  </ul>
+                </div>
               ) : (
-                <Link href="/signin">Sign In</Link>
+                <li>
+                  <Link href="/signin">Sign In</Link>
+                </li>
               )}
             </div>
           </ul>
