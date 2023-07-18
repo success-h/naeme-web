@@ -1,6 +1,9 @@
-import { useUserContext } from "@/hooks/useUser";
+"use client";
 import Image from "next/image";
-
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Link from "next/link";
 export const imageUrl = [
   {
     id: 1,
@@ -35,6 +38,10 @@ export const imageUrl = [
 ];
 
 export default function HowItWorks() {
+  useEffect(() => {
+    AOS.init({ duration: 1000, easing: "ease-out-cubic" });
+    AOS.refresh();
+  }, []);
   return (
     <>
       <div className="justify-between grid grid-cols-2 sm:grid-cols-3 md:flex gap-10 md:flex-wrap  px-4 lg:px-0 my-20 mx-auto max-w-[1038px]">
@@ -85,6 +92,56 @@ export default function HowItWorks() {
             </li>
           </ul>
         </div>
+      </div>
+      <div className="w-full h-[500px] lg:h-[400px] relative">
+        <div className="bg-[#000000c2] z-20 h-full w-full flex-col flex items-start justify-center absolute">
+          <div className="flex flex-col lg:flex-row items-center justify-between max-w-screen-xl px-4 md:px-20 py-10 w-full h-full mx-auto">
+            <div className="">
+              <h2
+                data-aos="fade-up"
+                className="text-3xl md:text-5xl text-white"
+              >
+                Planing to{" "}
+                <span className="text-emerald-300 font-bold">
+                  {" "}
+                  host an event?
+                </span>
+              </h2>
+              <p data-aos="fade-up" className="text-white max-w-xl mt-4 w-full">
+                Why create an event with us? we offer a seamless experience with
+                event creation and a{" "}
+                <span className="text-emerald-300">Unique QR-Code</span> you can
+                share to attendees to scan and access your event directly. We
+                also have a secure fraud agnostic system for an event organizer
+                to validate tickets.
+              </p>
+              <Link
+                href="/terms-of-use"
+                data-aos="fade-up"
+                className="text-orange-300 font-extralight mt-10 cursor-pointer"
+              >
+                Conditions apply*
+              </Link>
+            </div>
+            <Link
+              prefetch={true}
+              href="/create-event"
+              data-aos="fade-up"
+              className="mt-10"
+            >
+              <button className="btn px-10 py-4 rounded-full border text-primary hover:text-white hover:border-white border-primary">
+                Create an event
+              </button>
+            </Link>
+          </div>
+        </div>
+        <Image
+          src={"/banner.jpg"}
+          layout="fill"
+          objectFit="cover"
+          alt="banner"
+          className="w-full"
+        />
       </div>
     </>
   );

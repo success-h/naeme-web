@@ -2,7 +2,7 @@ export function Skeleton() {
   return (
     <div
       data-aos="fade-up"
-      className="card card-compact w-80 h-96 shadow-xl bg-gray-100 animate-pulse"
+      className="card card-compact w-80 h-96 bg-gray-100 animate-pulse"
     >
       <figure className="h-20 w-full bg-gray-200 animate-pulse"></figure>
       <div className="card-body">

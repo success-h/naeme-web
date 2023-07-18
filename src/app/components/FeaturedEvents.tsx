@@ -7,7 +7,7 @@ import { EventDataTypes } from "../../../typings";
 
 export function FeaturedEvents({ data }: { data: EventDataTypes[] }) {
   return (
-    <div className="mb-10 max-w-6xl mx-auto w-full">
+    <div className="pb-10 max-w-6xl mx-auto w-full">
       <div className="mt-14 px-7 flex justify-between items-center">
         <h2 data-aos="fade-up" className="font-bold text-lg sm:text-2xl">
           Featured Event

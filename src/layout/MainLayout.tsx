@@ -12,6 +12,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useUserContext } from "@/hooks/useUser";
 import { User } from "../../typings";
 import { getUser } from "@/app/signin/utils/function";
+import { Footer } from "./Footer";
 const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 interface Props {
   children: ReactNode;
@@ -37,7 +38,7 @@ export const MainLayout = ({ children }: Props) => {
       <CartProvider>
         <Navbar />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </CartProvider>
     </GoogleOAuthProvider>
   );
