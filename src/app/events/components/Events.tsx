@@ -124,7 +124,7 @@ export function Events({ params, searchParams }: Props) {
         {events?.map((event) => (
           <Card event={event} key={event.id} />
         ))}
-        {loading && [1, 2, 3]?.map((event) => <Skeleton />)}
+        {loading && [1, 2, 3, 4, 5, 6]?.map((item, i) => <Skeleton key={i} />)}
       </div>
 
       <div className="mt-10 flex items-center justify center">
