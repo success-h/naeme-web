@@ -1,4 +1,5 @@
 import { getUser } from "@/app/signin/utils/function";
+import { useCartContext } from "@/hooks/useCart";
 import { useUserContext } from "@/hooks/useUser";
 import { googleLogout } from "@react-oauth/google";
 
@@ -9,6 +10,8 @@ import React, { useCallback, useEffect } from "react";
 
 export function Navbar() {
   let { user, setUser } = useUserContext();
+  const { cartQuantity, cartTotal } = useCartContext();
+
   const router = useRouter();
 
   const logout = async () => {
@@ -32,7 +35,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="backdrop-blur-md max-lg:fixed sticky top-0 z-30 right-0 left-0">
+    <nav className="backdrop-blur-md max-lg:fixed sticky top-0 z-30 right-0 left-0 text-gray-500">
       <div className="drawer max-w-screen-2xl mx-auto">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
@@ -53,7 +56,7 @@ export function Navbar() {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  className="inline-block w-9 h-9 stroke-current"
+                  className="inline-block w-9 h-9 stroke-current text-gray-400"
                 >
                   <path
                     strokeLinecap="round"
@@ -76,6 +79,53 @@ export function Navbar() {
                   <Link href={user ? "/create-event" : "/signin"}>
                     Create events
                   </Link>
+                </li>
+                <li className="flex-none gap-2 z-50">
+                  <div className="dropdown dropdown-bottom dropdown-end">
+                    <label
+                      tabIndex={0}
+                      className="btn hover:border-none btn-ghost btn-circle hover:bg-white bg-gray-100"
+                    >
+                      <div className="indicator">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-7 w-7"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                          />
+                        </svg>
+                        <span className="badge badge-md indicator-item bg-blue-400 border-none text-lg">
+                          {cartQuantity}
+                        </span>
+                      </div>
+                    </label>
+                    <div
+                      tabIndex={0}
+                      className="mt-3 z-[1] bg-gray-100 card card-compact dropdown-content w-52 shadow"
+                    >
+                      <div className="card-body">
+                        <span className="font-bold text-lg">
+                          {cartQuantity} Items
+                        </span>
+                        <span className="text-info">
+                          Subtotal: ${cartTotal()}
+                        </span>
+
+                        <Link href="/cart" className="">
+                          <button className="btn bg-blue-300 w-full">
+                            View cart
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 </li>
                 <div>
                   {user ? (
@@ -139,7 +189,52 @@ export function Navbar() {
                 Create events
               </Link>
             </li>
-            <div>
+            <li className="flex-none gap-2 z-50">
+              <div className="dropdown dropdown-bottom dropdown-end">
+                <label
+                  tabIndex={0}
+                  className="btn hover:border-none btn-ghost btn-circle hover:bg-white bg-gray-100"
+                >
+                  <div className="indicator">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-7 w-7"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg>
+                    <span className="badge badge-md indicator-item bg-blue-400 border-none text-lg">
+                      {cartQuantity}
+                    </span>
+                  </div>
+                </label>
+                <div
+                  tabIndex={0}
+                  className="mt-3 z-[1] bg-gray-100 card card-compact dropdown-content w-52 shadow"
+                >
+                  <div className="card-body">
+                    <span className="font-bold text-lg">
+                      {cartQuantity} Items
+                    </span>
+                    <span className="text-info">Subtotal: ${cartTotal()}</span>
+
+                    <Link href="/cart" className="">
+                      <button className="btn bg-blue-300 w-full">
+                        View cart
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
               {user ? (
                 <div className="dropdown dropdown-bottom text-gray-600">
                   <label
@@ -175,7 +270,7 @@ export function Navbar() {
                   <Link href="/signin">Sign In</Link>
                 </li>
               )}
-            </div>
+            </li>
           </ul>
         </div>
       </div>

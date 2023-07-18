@@ -1,18 +1,19 @@
 import React, { Dispatch, SetStateAction } from "react";
 
+type Ticket = {
+  id: string;
+  price: number;
+  lowest_price: number;
+  highest_price: number;
+  title: string;
+  quantity: number;
+  event: string;
+  owner: string;
+};
 interface EventDataTypes {
   id: string;
   qr_code: "string";
-  tickets: {
-    id: string;
-    price: number;
-    lowest_price: number;
-    highest_price: number;
-    title: string;
-    quantity: number;
-    event: string;
-    owner: string;
-  }[];
+  tickets: Ticket[];
   paid_tickets: {
     price: number;
     owner: string;
@@ -90,26 +91,27 @@ interface CartItems {
   event: string;
   eventTitle: string;
 }
+interface AddToCart {
+  id: string;
+  price: number;
+  title: string;
+  eventItem: EventDataTypes;
+}
 
 interface CartContextTypes {
+  incrementCartItem: (id: string) => void;
   toggleCart: () => void;
   toggleMobile: boolean;
   setToggleMobile: Dispatch<SetStateAction<boolean>>;
   toggle: boolean;
   setToggle: Dispatch<SetStateAction<boolean>>;
   checkoutToggle: boolean;
-  setChectoutToggle: Dispatch<SetStateAction<boolean>>;
+  setChechoutToggle: Dispatch<SetStateAction<boolean>>;
   eventId: string;
   setEventId: Dispatch<SetStateAction<string>>;
   qrState: boolean;
   setQrState: Dispatch<SetStateAction<boolean>>;
-  increaseCartQuantity(
-    id: string,
-    price: number,
-    title: string,
-    eventId: string,
-    eventItem: EventDataTypes
-  ): void;
+  addToCart(ticket: AddToCart): void;
   decreaseCartQuantity(id: string): void;
   removeFromCart(id: any): void;
   cartItems: CartItems[];
@@ -117,7 +119,7 @@ interface CartContextTypes {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   cartQuantity: number;
-  cartTotal: number;
+  cartTotal: () => number;
   getItemQuantity: (id: string) => number;
 }
 

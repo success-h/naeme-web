@@ -1,6 +1,11 @@
 "use client";
 import { ReactNode, createContext, useContext, useState } from "react";
-import { CartContextTypes, CartItems, EventDataTypes } from "../../typings";
+import {
+  AddToCart,
+  CartContextTypes,
+  CartItems,
+  EventDataTypes,
+} from "../../typings";
 
 export const CartContext = createContext({} as CartContextTypes);
 
@@ -11,7 +16,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [toggle, setToggle] = useState(false);
   const [toggleMobile, setToggleMobile] = useState(false);
-  const [checkoutToggle, setChectoutToggle] = useState(false);
+  const [checkoutToggle, setChechoutToggle] = useState(false);
   const [eventId, setEventId] = useState("");
 
   const cartQuantity = cartItems.reduce(
@@ -19,9 +24,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     0
   );
 
-  const cartTotal = cartItems.reduce((acc, item) => {
-    return acc + item.price * item.quantity;
-  }, 0);
+  const cartTotal = (): number => {
+    return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  };
 
   const toggleCart = () => setIsOpen(!isOpen);
 
@@ -31,31 +36,26 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return qty;
   };
 
-  function increaseCartQuantity(
-    id: string,
-    price: number,
-    title: string,
-    eventId: string,
-    eventItem: EventDataTypes
-  ) {
+  function addToCart(ticket: AddToCart) {
     const AvailableTicket =
-      eventItem?.total_ticket_count - eventItem?.total_sold_tickets;
+      ticket.eventItem?.total_ticket_count -
+      ticket.eventItem?.total_sold_tickets;
     setCartItems((currItems) => {
-      if (!currItems.find((item) => item.id === id)) {
+      if (!currItems.find((item) => item.id === ticket.id)) {
         return [
           ...currItems,
           {
-            id,
-            title,
-            event: eventId,
-            price,
+            id: ticket.id,
+            title: ticket.title,
+            event: ticket.eventItem.id,
+            price: ticket.price,
             quantity: 1,
-            eventTitle: eventItem.title,
+            eventTitle: ticket.eventItem.title,
           },
         ];
       } else {
         return currItems.map((item) => {
-          if (item.id === id && cartQuantity < AvailableTicket) {
+          if (item.id === ticket.id && cartQuantity < AvailableTicket) {
             return { ...item, quantity: item.quantity + 1 };
           } else {
             return item;
@@ -64,6 +64,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
     });
   }
+
+  const incrementCartItem = (id: string) => {
+    setCartItems((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
 
   function decreaseCartQuantity(id: string) {
     setCartItems((currItems) => {
@@ -80,6 +88,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
     });
   }
+
   function removeFromCart(id: string) {
     setCartItems((currItems) => {
       return currItems.filter((item) => item.id !== id);
@@ -89,13 +98,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
   return (
     <CartContext.Provider
       value={{
+        incrementCartItem,
         toggleCart,
         cartItems,
         setCartItems,
         cartQuantity,
         getItemQuantity,
         removeFromCart,
-        increaseCartQuantity,
+        addToCart,
         decreaseCartQuantity,
         loading,
         setLoading,
@@ -104,7 +114,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         toggle,
         setToggle,
         checkoutToggle,
-        setChectoutToggle,
+        setChechoutToggle,
         cartTotal,
         eventId,
         setEventId,
