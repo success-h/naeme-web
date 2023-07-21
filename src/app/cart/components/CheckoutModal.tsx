@@ -1,75 +1,49 @@
 import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
 import { AiOutlineRight } from "react-icons/ai";
 
 type Props = {
-  tourProps: string;
+  initializePayment: (
+    callback?: (() => void) | undefined,
+    onClose?: (() => void) | undefined
+  ) => void;
+  onSuccess: (reference: any) => void;
+  onClose: () => void;
+  setInput: Dispatch<SetStateAction<string>>;
+  email: string;
 };
 
-export function CheckoutModal({ tourProps }: Props) {
+export function CheckoutModal({
+  initializePayment,
+  onClose,
+  onSuccess,
+  setInput,
+}: Props) {
   return (
-    <dialog id="my_modal_5" className="modal modal-middle">
+    <dialog id="modal_2" className="modal modal-middle">
       <form method="dialog" className="modal-box bg-white max-w-sm">
-        <p className="font-bold text-lg mb-7">Payment Method</p>
-        <div className="btn btn-lg justify-between mb-4 w-full border-2 border-white  bg-gray-100 hover:border-blue-400">
-          <Image
-            src="/flashpay.png"
-            height={21}
-            width={28}
-            alt="button"
-            className="mr-4"
-          />
-          <div className="flex flex-col items-start">
-            <p className="text-xs text-blue-500">Recommended</p>
-            <p className=" text-sm">Flash Pay</p>
-          </div>
+        <p className="font-bold text-lg mb-7">Get ticket as a guest</p>
+        <p className="text-xs text-gray-500">
+          Your email address is required for ticket purchase as a none user of
+          this platform. your tickets will be sent to you after purchase via
+          email
+        </p>
+        <input
+          type="text"
+          className="bg-gray-100 w-full h-12 px-4 rounded-lg mt-4 outline-gray-200"
+          placeholder="Enter email address"
+          onChange={(e) => setInput(e.target.value)}
+        />
 
-          <div className="inline-flex items-center justify-end text-gray-300 flex-1">
-            <AiOutlineRight className="justify-end" />
-          </div>
-        </div>
-        <div className="btn text-sm btn-lg justify-between mb-4 w-full border-2 border-white  bg-gray-100 hover:border-blue-400">
-          <Image
-            className="mr-4"
-            src="/card.png"
-            height={21}
-            width={28}
-            alt="button"
-          />
-
-          <p>Credit or Debit</p>
-
-          <div className="inline-flex items-center justify-end text-gray-300 flex-1">
-            <AiOutlineRight className="justify-end" />
-          </div>
-        </div>
-        <div className="btn text-sm btn-lg justify-between mb-4 w-full border-2 border-white  bg-gray-100 hover:border-blue-400">
-          <Image
-            className="mr-4"
-            src="/apple.png"
-            height={21}
-            width={28}
-            alt="button"
-          />
-          <p>Apple Pay</p>
-
-          <div className="inline-flex items-center justify-end text-gray-300 flex-1">
-            <AiOutlineRight className="justify-end" />
-          </div>
-        </div>
-        <div className="btn text-sm btn-lg justify-between mb-4 w-full border-2 border-white  bg-gray-100 hover:border-blue-400">
-          <Image
-            className="mr-4"
-            src="/google.png"
-            height={21}
-            width={28}
-            alt="button"
-          />
-          <p>Google Pay</p>
-
-          <div className="inline-flex items-center justify-end text-gray-300 flex-1">
-            <AiOutlineRight className="justify-end" />
-          </div>
-        </div>
+        <button
+          className="btn bg-black mt-4 text-white hover:bg-gray-600"
+          onClick={() => {
+            //@ts-ignore
+            initializePayment(onSuccess, onClose);
+          }}
+        >
+          Pay Now
+        </button>
       </form>
       <form method="dialog" className="modal-backdrop">
         <button>close</button>

@@ -22,6 +22,17 @@ export const getEvent = async (id: string) => {
   }
   return data;
 };
+
+export async function getCategory() {
+  try {
+    const response = await api.get(`/event-category/`);
+    const categrory = await response.data;
+    return categrory.results;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export const getSearchedEvents = async (searchValue: string | undefined) => {
   const response = await api.get(
     `/events/?title=${searchValue?.toLowerCase()}`
@@ -32,3 +43,16 @@ export const getSearchedEvents = async (searchValue: string | undefined) => {
   }
   return data;
 };
+
+export async function getUserTicket(id: string) {
+  const response = await api.get(`/my-tickets/?booking_id=${id}`);
+  const ticket = await response.data;
+  // // console.log({ ticket });
+  return ticket;
+}
+export async function getSingleTicket(id: string) {
+  const response = await api.get(`/my-tickets/${id}`);
+  const ticket = await response.data;
+  // // console.log({ ticket });
+  return ticket;
+}

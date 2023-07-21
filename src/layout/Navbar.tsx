@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
 
 export function Navbar() {
-  let { user, setUser } = useUserContext();
+  const { user, setUser } = useUserContext();
   const { cartQuantity, cartTotal } = useCartContext();
 
   const router = useRouter();
@@ -238,25 +238,25 @@ export function Navbar() {
                       />
                     </div>
                   </label>
-                  <ul
+                  <div
                     tabIndex={0}
                     className="bg-zinc-800 menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52"
                   >
-                    <li>
+                    <p>
                       <Link href="/dashboard" className="justify-between">
                         Profile
                       </Link>
-                    </li>
+                    </p>
 
-                    <li>
+                    <p>
                       <button onClick={logout}>Logout</button>
-                    </li>
-                  </ul>
+                    </p>
+                  </div>
                 </div>
               ) : (
-                <li>
+                <p>
                   <Link href="/signin">Sign In</Link>
-                </li>
+                </p>
               )}
             </li>
           </ul>

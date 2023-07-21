@@ -2,7 +2,7 @@
 
 import moment from "moment";
 import { EventDataTypes } from "../../../../../typings";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Countdown } from "./Countdown";
 import Calendar from "./svg/Calendar";
 import Location from "./svg/Location";
@@ -13,10 +13,20 @@ import { formatter } from "@/app/functions/functions";
 import Image from "next/image";
 import { useCartContext } from "@/hooks/useCart";
 import { TicketModal } from "./TicketsModal";
+import { useSearchParams } from "next/navigation";
 
 export function Details(event: EventDataTypes) {
-  const { cartItems, addToCart } = useCartContext();
-  console.log({ cartItems });
+  const searchParams = useSearchParams();
+  const params = searchParams?.get("params");
+
+  useEffect(() => {
+    if (params) {
+      // @ts-ignore
+      window?.modal_1.showModal();
+    }
+  }, []);
+
+  console.log(params);
   const end_date = moment(event.end_date + " " + event.start_time).format(
     "YYYY-MM-DD HH:mm:ss"
   );

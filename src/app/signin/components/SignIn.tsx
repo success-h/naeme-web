@@ -51,7 +51,7 @@ export const Signin = () => {
             } rounded-xs w-full my-3 cursor-pointer flex flex-col gap-y-4 justify-center items-center py-3`}
           >
             {loading ? (
-              <span className="loading loading-ring loading-lg"></span>
+              <span className="loading loading-dots loading-lg"></span>
             ) : (
               <button className="">
                 <GoogleLogin

@@ -64,9 +64,10 @@ type PaidTicketDataTypes = {
   ticket_admin: string;
   used: boolean;
   quantity: number;
-  date: string;
+  start_date: string;
   start_time: string;
   end_time: string;
+  end_date: string;
   id: string;
   qr_code: string;
 } | null;

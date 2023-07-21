@@ -1,0 +1,66 @@
+{
+  "CountryVenueData": [
+    {
+      "label": "Country",
+      "inputName": "country",
+      "placeholder": "Enter country",
+      "type": "text",
+      "id": 1,
+      "errorMessage": "Please enter event location country"
+    },
+    {
+      "label": "State",
+      "inputName": "state",
+      "placeholder": "Enter state",
+      "type": "text",
+      "id": 2,
+      "errorMessage": "Please enter event location state"
+    },
+    {
+      "label": "City",
+      "inputName": "city",
+      "placeholder": "Enter city",
+      "type": "text",
+      "id": 3,
+      "errorMessage": "Please enter event location city"
+    },
+    {
+      "label": "Venue",
+      "inputName": "venue",
+      "placeholder": "Let people know your event venue",
+      "type": "text",
+      "id": 4,
+      "errorMessage": "Please enter event venue"
+    }
+  ],
+  "DateTimeInputData": [
+    {
+      "label": "Start Date",
+      "inputName": "start_date",
+      "type": "date",
+      "id": 1,
+      "errorMessage": "Please enter a valid date"
+    },
+    {
+      "label": "End Date",
+      "inputName": "end_date",
+      "type": "date",
+      "id": 2,
+      "errorMessage": "Please enter a valid date"
+    },
+    {
+      "label": "Start Time",
+      "inputName": "start_time",
+      "type": "time",
+      "id": 3,
+      "errorMessage": "Please enter a valid start time"
+    },
+    {
+      "label": "End Time",
+      "inputName": "end_time",
+      "type": "time",
+      "id": 4,
+      "errorMessage": "Please enter a valid end time"
+    }
+  ]
+}

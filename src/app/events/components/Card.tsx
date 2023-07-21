@@ -22,10 +22,7 @@ export const Card = ({ event }: Props) => {
   });
 
   return (
-    <div
-      data-aos="fade-up"
-      className="card card-compact w-80 h-96 bg-gray-50 border-none"
-    >
+    <div data-aos="fade-up" className="card card-compact w-80 h-96">
       <figure>
         <Image
           className="hover:scale-105 bg-cover object-cover w-full transition-all overflow-hidden duration-500"
@@ -38,7 +35,7 @@ export const Card = ({ event }: Props) => {
           loading="lazy"
         />
       </figure>
-      <div className="card-body">
+      <div className="rounded-b-xl py-4 p-0 px-4 border">
         <h2 className="card-title"> {event.title}</h2>
         <p className="text-xs">
           {moment(event.start_date).format("MMMM Do YYYY.")}

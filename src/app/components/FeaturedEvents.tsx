@@ -35,7 +35,6 @@ export function FeaturedEvents({ data }: { data: EventDataTypes[] }) {
           scrollbar={{ draggable: true }}
           loop
           // navigation
-          className="sm:hidden my-7 border-0"
         >
           {data?.slice(0, 9).map((event) => (
             <div key={event.id}>

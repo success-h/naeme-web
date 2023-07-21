@@ -15,11 +15,14 @@ export function Footer() {
               alt="logo"
             />
           </Link>
-          <p>
-            ACME Industries Ltd.
-            <br />
-            Providing reliable tech since 1992
-          </p>
+          <Link href="/terms-of-use">
+            <p>
+              Naeme Events Ltd.
+              <br />
+              Terms of use
+            </p>
+          </Link>
+          <p>Privacy Policy</p>
         </div>
         <div>
           <span className="footer-title">Social</span>

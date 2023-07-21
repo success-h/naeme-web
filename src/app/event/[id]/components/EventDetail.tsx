@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { EventDataTypes } from "../../../../../typings";
 import { Details } from "./Details";
+import { useSearchParams } from "next/navigation";
 
 export function EventDetail(event: EventDataTypes) {
   return (

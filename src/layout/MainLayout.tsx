@@ -6,7 +6,6 @@ import {
   useEffect,
 } from "react";
 import { Navbar } from "./Navbar";
-import { CartProvider } from "@/context/CartContext";
 import { UserProvider } from "@/context/UserContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useUserContext } from "@/hooks/useUser";
@@ -35,11 +34,9 @@ export const MainLayout = ({ children }: Props) => {
 
   return (
     <GoogleOAuthProvider clientId={clientId ? clientId : ""}>
-      <CartProvider>
-        <Navbar />
-        {children}
-        <Footer />
-      </CartProvider>
+      <Navbar />
+      {children}
+      <Footer />
     </GoogleOAuthProvider>
   );
 };

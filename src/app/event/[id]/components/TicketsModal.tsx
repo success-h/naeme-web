@@ -12,7 +12,9 @@ export function TicketModal({ event, tickets }: Props) {
   return (
     <dialog id="modal_1" className="modal modal-middle">
       <form method="dialog" className="modal-box bg-gray-50 max-w-lg">
-        <p className="font-bold text-lg mb-7">Select payment method</p>
+        <p className="font-bold text-lg mb-7 outline-none border-none">
+          Select payment method
+        </p>
         <button className="absolute top-5 right-7 text-lg">x</button>
         {tickets
           .filter((ticket) => ticket.price > 0)
