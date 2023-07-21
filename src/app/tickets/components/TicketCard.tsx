@@ -80,7 +80,7 @@ const TicketCard = ({ ticket }: { ticket: PaidTicketDataTypes }) => {
           </div>
         )}
         {!isVerify &&
-          // user?.id === ticket?.ticket_admin &&
+          user?.id === ticket?.ticket_admin &&
           pathname === `/tickets/${ticket?.id}` && (
             <div
               className={`${
