@@ -90,7 +90,7 @@ const Cart = () => {
                 .catch((error) => {
                   // console.error("Error sending email:", error);
                 });
-              router.push(`/dashboard`);
+              router.push(`/tickets?bookingsId=${resData[0].booking_id}`);
             } else {
               emailjs
                 .send(
