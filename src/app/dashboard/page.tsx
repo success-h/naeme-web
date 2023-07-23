@@ -64,13 +64,13 @@ function Dashboard() {
       </div>
       <div className="-mt-20">
         {state == "ticket" ? (
-          <div className="-mt-10 flex flex-col sm:flex-row justify-center sm:justify-center sm:flex-wrap gap-10">
+          <div className="flex flex-col sm:flex-row justify-center sm:justify-center sm:flex-wrap gap-10">
             {tickets?.map((ticket) => (
               <TicketCard key={ticket?.id} ticket={ticket} />
             ))}
           </div>
         ) : (
-          <div className="-mt-10 flex flex-col sm:flex-row justify-center md:justify-start sm:flex-wrap gap-10 place-items-center">
+          <div className="flex flex-col sm:flex-row justify-center md:justify-start sm:flex-wrap gap-10 place-items-center">
             {events?.map((event) => (
               <Card event={event} key={event.id} />
             ))}
