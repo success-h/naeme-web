@@ -62,7 +62,7 @@ function Dashboard() {
           </>
         )}
       </div>
-      <div className="">
+      <div className="-mt-20">
         {state == "ticket" ? (
           <div className="-mt-10 flex flex-col sm:flex-row justify-center sm:justify-center sm:flex-wrap gap-10">
             {tickets?.map((ticket) => (
