@@ -32,7 +32,7 @@ function QRscanner() {
                 if (!!result) {
                   // @ts-ignore;
                   const text = result.getText();
-                  router.push(`https://www.naeme.app/ticket/${text}`);
+                  router.push(`https://www.naeme.app/tickets/${text}`);
                   setQrState(false);
                 }
                 if (!!error) {
