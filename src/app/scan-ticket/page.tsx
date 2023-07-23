@@ -15,13 +15,8 @@ function QRscanner() {
       <div className="flex flex-col mt-10 items-center justify-center">
         <h1 className="text-2xl font-sans font-bold">SCAN YOUR TICKETS</h1>
         <strong className="text-sm">FOR EVENT OWNERS ONLY</strong>
-        <button
-          onClick={() => setQrState(!qrState)}
-          className="btn text-md px-4 py-2 mt-44"
-        >
-          {!qrState ? "Click to scan" : "Stop scanner"}
-        </button>
-        <div className="h-[500px] w-[340px]">
+
+        <div className="h-[300px] w-full">
           {qrState && (
             <QrReader
               scanDelay={1000}
@@ -32,7 +27,7 @@ function QRscanner() {
                 if (!!result) {
                   // @ts-ignore;
                   const text = result.getText();
-                  router.push(`https://www.naeme.app/tickets/${text}`);
+                  router.push(`/tickets/${text}`);
                   setQrState(false);
                 }
                 if (!!error) {
@@ -42,6 +37,12 @@ function QRscanner() {
             />
           )}
         </div>
+        <button
+          onClick={() => setQrState(!qrState)}
+          className="btn text-md px-4 py-2 mb-44  mt-10"
+        >
+          {!qrState ? "Click to scan" : "Stop scanner"}
+        </button>
       </div>
     </div>
   );
