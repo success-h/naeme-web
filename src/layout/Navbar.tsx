@@ -120,7 +120,7 @@ export function Navbar() {
                   <Link href="/events">Explore events</Link>
                 </li>
                 <li>
-                  <Link href="/qr-scanner">Scan Ticket</Link>
+                  <Link href="/scan-ticket">Scan Ticket</Link>
                 </li>
                 <li>
                   <Link href={user ? "/create-event" : "/signin"}>
@@ -222,7 +222,7 @@ export function Navbar() {
               <Link href="/events">Explore events</Link>
             </li>
             <li>
-              <Link href="/qr-scanner">Scan Ticket</Link>
+              <Link href="/scan-ticket">Scan Ticket</Link>
             </li>
             <li>
               <Link href={user ? "/create-event" : "/signin"}>
