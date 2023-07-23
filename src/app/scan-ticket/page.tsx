@@ -16,22 +16,22 @@ function QRscanner() {
         <h1 className="text-2xl font-sans font-bold">SCAN YOUR TICKETS</h1>
         <strong className="text-sm">FOR EVENT OWNERS ONLY</strong>
 
-        <div className="h-[300px] w-[300px]  my-10">
+        <div className="h-[300px] w-[300px] my-10">
           {qrState && (
             <QrReader
               scanDelay={1000}
               constraints={{
                 facingMode: "environment",
               }}
-              className="h-[300px] w-fit"
-              // containerStyle={{
-              //   innerWidth: 300,
-              //   innerHeight: 300,
-              // }}
-              // videoStyle={{
-              //   innerWidth: 300,
-              //   innerHeight: 300,
-              // }}
+              className="h-[300px]"
+              containerStyle={{
+                innerWidth: 300,
+                innerHeight: 300,
+              }}
+              videoStyle={{
+                innerWidth: 300,
+                innerHeight: 300,
+              }}
               onResult={(result: any, error: any) => {
                 if (!!result) {
                   // @ts-ignore;
