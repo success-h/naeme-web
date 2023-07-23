@@ -40,7 +40,7 @@ export function Details(event: EventDataTypes) {
         <h1 className="text-4xl font-bold">{event.title}</h1>
         {timeBetween.asSeconds() < 0 ? null : (
           <div data-aos="fade-up" className="mb-4">
-            <Countdown date={end_date} />
+            <Countdown date={end_date} className="text-xl" />
           </div>
         )}
         <>

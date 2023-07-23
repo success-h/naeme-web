@@ -16,12 +16,9 @@ import { usePathname } from "next/navigation";
 const TicketCard = ({ ticket }: { ticket: PaidTicketDataTypes }) => {
   const pathname = usePathname();
 
-  console.log(ticket);
-  const datetime = moment(ticket?.start_date + " " + ticket?.end_time).format(
+  const datetime = moment(ticket?.end_date + " " + ticket?.end_time).format(
     "YYYY-MM-DD HH:mm:ss"
   );
-  const { user } = useUserContext();
-  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
   const [isVerify, setIsVerify] = useState<boolean | undefined>(ticket?.used);
 
@@ -29,10 +26,6 @@ const TicketCard = ({ ticket }: { ticket: PaidTicketDataTypes }) => {
     style: "currency",
     currency: "NGN",
   });
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   function showDetailsHandler() {
     router.push(`/tickets/${ticket?.id}`);
@@ -79,27 +72,6 @@ const TicketCard = ({ ticket }: { ticket: PaidTicketDataTypes }) => {
             <p className="text-sm px-1">verified</p>
           </div>
         )}
-        {!isVerify &&
-          user?.id === ticket?.ticket_admin &&
-          pathname === `/tickets/${ticket?.id}` && (
-            <div
-              className={`${
-                isVerify ? "bg-emerald-600" : "bg-sky-700"
-              } items-center justify-center px-3 flex rounded-4xl text-white`}
-            >
-              {!isVerify ? (
-                <GoUnverified size={25} className="px-1" />
-              ) : (
-                <MdVerified size={25} className="px-1" />
-              )}
-              <VerifyEvent
-                isVerify={isVerify}
-                setIsVerify={setIsVerify}
-                ticket_owner={ticket?.ticket_admin}
-                ticket_id={ticket?.id}
-              />
-            </div>
-          )}
       </div>
 
       <div className="grid grid-cols-2 grid-rows-2 gap-3">
@@ -131,7 +103,7 @@ const TicketCard = ({ ticket }: { ticket: PaidTicketDataTypes }) => {
         </div>
       </div>
       <div className="grid px-4 mt-3">
-        <Countdown className="text-primary text-xs " date={datetime} />
+        <Countdown className="text-primary" date={datetime} />
       </div>
     </div>
   );

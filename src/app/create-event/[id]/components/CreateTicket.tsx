@@ -160,14 +160,10 @@ export function CreateTicket({ id, access }: { id: string; access?: string }) {
               )}
               <Link
                 href={`/event/${id}`}
-                className="btn bg-black text-white w-full  sm:w-32 hover:bg-gray-600"
+                className="btn bg-gray-200 text-black hover:text-white w-full  sm:w-32 hover:bg-gray-600"
               >
                 <button type="submit">
-                  {loading ? (
-                    <span className="loading loading-dots loading-lg"></span>
-                  ) : (
-                    <p className="flex items-center justify-center">Done</p>
-                  )}
+                  <p className="flex items-center justify-center">Done</p>
                 </button>
               </Link>
             </div>
