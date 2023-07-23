@@ -16,7 +16,7 @@ import { usePathname } from "next/navigation";
 const TicketCard = ({ ticket }: { ticket: PaidTicketDataTypes }) => {
   const pathname = usePathname();
 
-  console.log(pathname);
+  console.log(ticket);
   const datetime = moment(ticket?.start_date + " " + ticket?.end_time).format(
     "YYYY-MM-DD HH:mm:ss"
   );
