@@ -23,7 +23,7 @@ function QRscanner() {
               constraints={{
                 facingMode: "environment",
               }}
-              className="h-[300px] w-[300px]"
+              className="h-[300px] w-fit"
               onResult={(result: any, error: any) => {
                 if (!!result) {
                   // @ts-ignore;
