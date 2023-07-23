@@ -250,7 +250,7 @@ export function Navbar() {
                     tabIndex={0}
                     className="bg-zinc-800 menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52"
                   >
-                    <p>
+                    <p className="mb-3">
                       <Link href="/dashboard" className="justify-between">
                         Profile
                       </Link>
