@@ -16,7 +16,7 @@ function QRscanner() {
         <h1 className="text-2xl font-sans font-bold">SCAN YOUR TICKETS</h1>
         <strong className="text-sm">FOR EVENT OWNERS ONLY</strong>
 
-        <div className="h-[300px] w-full">
+        <div className="h-[300px] w-full bg-gray-200">
           {qrState && (
             <QrReader
               scanDelay={1000}
