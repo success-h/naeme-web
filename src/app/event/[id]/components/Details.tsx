@@ -181,7 +181,13 @@ export function Details(event: EventDataTypes) {
         </div>
         <div className="flex items-center justify-between mb-36">
           <div>
-            <Image alt="" src={event.qr_code} height={200} width={200} />
+            <Image
+              alt=""
+              src={event.qr_code}
+              height={200}
+              width={200}
+              priority
+            />
           </div>
           <div className="hidden lg:block">
             {timeBetween.asSeconds() < 0 ? (

@@ -61,6 +61,7 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
                   src={item.image}
                   className="w-full object-cover object-top"
                   layout="fill"
+                  priority
                 />
               </div>
             </div>

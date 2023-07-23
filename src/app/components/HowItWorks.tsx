@@ -51,7 +51,14 @@ export default function HowItWorks() {
             key={i.id}
             className="flex flex-col items-center justify-center"
           >
-            <Image alt="" className="" height={110} width={110} src={i.url} />
+            <Image
+              alt=""
+              className=""
+              height={110}
+              width={110}
+              src={i.url}
+              priority
+            />
             <p className="text-xs sm:text-sm mt-3">{i.title}</p>
           </div>
         ))}
@@ -64,6 +71,7 @@ export default function HowItWorks() {
             height={585}
             className=""
             src="/qrcode.png"
+            priority
           />
         </div>
         <div className="px-10 flex flex-col items-center sm:items-start justify-center">
@@ -141,6 +149,7 @@ export default function HowItWorks() {
           objectFit="cover"
           alt="banner"
           className="w-full"
+          priority
         />
       </div>
     </>

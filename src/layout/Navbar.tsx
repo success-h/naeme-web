@@ -48,6 +48,7 @@ export function Navbar() {
                 height={20}
                 width={120}
                 alt="logo"
+                priority
               />
             </Link>
             <div className="">
@@ -58,7 +59,13 @@ export function Navbar() {
                     className="lg:hidden btn hover:border-none btn-ghost btn-circle hover:bg-white"
                   >
                     <div className="indicator">
-                      <Image height={20} width={20} src="/Buy.svg" alt="buy" />
+                      <Image
+                        priority
+                        height={20}
+                        width={20}
+                        src="/Buy.svg"
+                        alt="buy"
+                      />
 
                       <span className="badge badge-md indicator-item bg-blue-400 border-none text-lg">
                         {cartQuantity}
@@ -207,6 +214,7 @@ export function Navbar() {
                 src="/logo.svg"
                 height={20}
                 width={120}
+                priority
                 alt="logo"
               />
             </Link>

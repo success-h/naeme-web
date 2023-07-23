@@ -32,6 +32,7 @@ export const Card = ({ event }: Props) => {
           objectFit="cover"
           src={event?.image}
           alt={event?.title}
+          priority
           loading="lazy"
         />
       </figure>

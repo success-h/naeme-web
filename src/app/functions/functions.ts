@@ -56,3 +56,28 @@ export async function getSingleTicket(id: string) {
   // // console.log({ ticket });
   return ticket;
 }
+
+export const getEventAndTicketData = async (user_id: string | undefined) => {
+  if (user_id) {
+    if (user_id) {
+      try {
+        const res = await api.get(`/my-tickets/?user=${user_id}`, {
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        const resp = await api.get(`/events/?owner=${user_id}`, {
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        const eventData = await resp.data.results;
+        const ticketData = await res.data.results;
+
+        return { eventData, ticketData };
+      } catch (error) {
+        // console.log(error);
+      }
+    }
+  }
+};
