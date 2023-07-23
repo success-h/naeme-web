@@ -16,13 +16,14 @@ function QRscanner() {
         <h1 className="text-2xl font-sans font-bold">SCAN YOUR TICKETS</h1>
         <strong className="text-sm">FOR EVENT OWNERS ONLY</strong>
 
-        <div className="h-[200px] w-full bg-gray-200 my-10">
+        <div className="h-[300px] w-[300px] bg-gray-200 my-10">
           {qrState && (
             <QrReader
               scanDelay={1000}
               constraints={{
                 facingMode: "environment",
               }}
+              className="h-[300px] w-[300px]"
               onResult={(result: any, error: any) => {
                 if (!!result) {
                   // @ts-ignore;
