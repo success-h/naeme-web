@@ -33,7 +33,6 @@ export const Card = ({ event }: Props) => {
           src={event?.image}
           alt={event?.title}
           priority
-          loading="lazy"
         />
       </figure>
       <div className="rounded-b-xl py-4 p-0 px-4 border">
