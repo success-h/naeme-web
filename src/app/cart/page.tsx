@@ -5,22 +5,30 @@ import { CheckoutModal } from "./components/CheckoutModal";
 import { useCartContext } from "@/hooks/useCart";
 import { v4 as uuidv4 } from "uuid";
 import emailjs from "emailjs-com";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUserContext } from "@/hooks/useUser";
 import { usePaystackPayment } from "react-paystack";
 import api from "../../../api";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Cart = () => {
-  const { cartItems, cartTotal } = useCartContext();
-  const [agreeToTerms, setAgreeToTerms] = useState(true);
+  const { cartItems, cartTotal, setCartItems } = useCartContext();
+  const searchParams = useSearchParams();
   const { user } = useUserContext();
-  const [email, setInput] = useState("");
+  const [email, setInput] = useState("id");
   const uuid = uuidv4();
   const router = useRouter();
   const amount = 100 * cartTotal();
 
-  console.log({ email });
+  const encodedCart = searchParams?.get("id");
+  // @ts-ignore
+  useEffect(() => {
+    if (encodedCart) {
+      const decodedString = atob(encodedCart);
+      const cart = JSON.parse(decodedString);
+      setCartItems((initialItems) => [...initialItems, ...cart]);
+    }
+  }, []);
 
   const config = {
     reference: new Date().getTime().toString(),
@@ -42,7 +50,6 @@ const Cart = () => {
               const response = await api.post(
                 "/my-tickets/",
                 {
-                  price: item.price,
                   event: item.event,
                   title: item.title,
                   ticket: item.id,
