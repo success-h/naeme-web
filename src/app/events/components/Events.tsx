@@ -77,8 +77,9 @@ export function Events({ params, searchParams }: Props) {
         setLoading(true);
         const data = await getEvents();
         if (data) {
-          setLoading(false);
+          setNextPage(data.next);
           setEvents(data.results);
+          setLoading(false);
         }
       }
       if (searchParams?.search) {
@@ -86,6 +87,7 @@ export function Events({ params, searchParams }: Props) {
         setInput(searchParams.search);
         const data = await getSearchedEvents(searchParams?.search);
         if (data) {
+          setNextPage(data.next);
           setLoading(false);
           setEvents(data.results);
         }
@@ -128,7 +130,7 @@ export function Events({ params, searchParams }: Props) {
       </div>
 
       <div className="mt-10 flex items-center justify center">
-        {!loading && (
+        {!loading && nextPage && (
           <button
             onClick={fetchMoreData}
             className="btn mx-auto my-10 mb-20 rounded-full"
