@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { Card } from "./Card";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { EventDataTypes } from "../../../../typings";
 import { getEvents, getSearchedEvents } from "@/app/functions/functions";
 import { Skeleton } from "./Skeleton";
@@ -17,13 +17,15 @@ type Props = {
   };
 };
 
-export function Events({ params, searchParams }: Props) {
+export function Events({ params }: Props) {
   const [input, setInput] = useState("");
   const [events, setEvents] = useState<EventDataTypes[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(false);
   const [nextPage, setNextPage] = useState<string | null>("");
   const router = useRouter();
+  const usesearchParams = useSearchParams();
+  const searchParams = usesearchParams?.get("search");
 
   async function fetchMoreData() {
     try {
@@ -73,7 +75,7 @@ export function Events({ params, searchParams }: Props) {
 
   useEffect(() => {
     (async () => {
-      if (!searchParams?.search) {
+      if (!searchParams) {
         setLoading(true);
         const data = await getEvents();
         if (data) {
@@ -82,10 +84,11 @@ export function Events({ params, searchParams }: Props) {
           setLoading(false);
         }
       }
-      if (searchParams?.search) {
+      if (searchParams) {
+        console.log("search:", searchParams.search);
         setLoading(true);
-        setInput(searchParams.search);
-        const data = await getSearchedEvents(searchParams?.search);
+        setInput(searchParams);
+        const data = await getSearchedEvents(searchParams);
         if (data) {
           setNextPage(data.next);
           setLoading(false);
