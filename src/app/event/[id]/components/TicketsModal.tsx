@@ -36,7 +36,11 @@ export function TicketModal({ event, tickets }: Props) {
               className="flex flex-col flex-1 justify-center py-3 border-b font-medium"
             >
               <div className="flex items-center justify-between">
-                {price && <div className="">{formatter.format(price)}</div>}
+                {price ? (
+                  <div className="">{formatter.format(price)}</div>
+                ) : (
+                  <p>Free</p>
+                )}
                 <div className="flex-1 text-xs text-center">{title}</div>
                 <p
                   onClick={() =>
