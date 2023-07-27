@@ -13,12 +13,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const Cart = () => {
   const { cartItems, cartTotal, setCartItems } = useCartContext();
+  const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState(false);
   const searchParams = useSearchParams();
   const { user } = useUserContext();
-  const [email, setInput] = useState("id");
+  const [email, setInput] = useState("");
   const uuid = uuidv4();
   const router = useRouter();
-  const amount = 100 * cartTotal();
+  const amount = cartTotal();
 
   const encodedCart = searchParams?.get("id");
   // @ts-ignore
@@ -33,17 +35,105 @@ const Cart = () => {
   const config = {
     reference: new Date().getTime().toString(),
     email: user?.email ? user.email : email,
-    amount,
+    amount: amount * 100,
     publicKey: process.env.NEXT_PUBLIC_PAYMENT_KEY
       ? process.env.NEXT_PUBLIC_PAYMENT_KEY
       : "",
+  };
+
+  const getFreeTickets = async () => {
+    setLoading(true);
+    try {
+      const resData = await Promise.all(
+        cartItems?.map(async (item) => {
+          const response = await api.post(
+            "/my-tickets/",
+            {
+              event: item.event,
+              title: item.title,
+              ticket: item.id,
+              user: user?.id,
+              booking_id: uuid,
+              email: user?.email ? user.email : email,
+              quantity: item.quantity,
+              transactionId: "",
+            },
+            {
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const data = await response.data;
+          if (response.status === 201) {
+            return data;
+          } else {
+            return null;
+          }
+        })
+      );
+
+      if (resData?.length) {
+        if (user?.email) {
+          emailjs
+            .send(
+              // @ts-ignore
+              process?.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+              process?.env.NEXT_PUBLIC_EMAILJS_TEMP_ID,
+              {
+                email_to: user?.email,
+                message: `https://www.naeme.app/tickets?bookingsId=${resData[0].booking_id}`,
+              },
+              process?.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+            )
+            .then((response) => {
+              // console.log("Email sent successfully:", response);
+            })
+            .catch((error) => {
+              // console.error("Error sending email:", error);
+            });
+          setLoading(false);
+          setToast(true);
+          setTimeout(() => {
+            setToast(false);
+            router.push(`/tickets?bookingsId=${resData[0].booking_id}`);
+          }, 2000);
+        } else {
+          emailjs
+            .send(
+              // @ts-ignore
+              process?.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+              process?.env.NEXT_PUBLIC_EMAILJS_TEMP_ID,
+              {
+                email_to: email,
+                message: `https://www.naeme.app/tickets?bookingsId=${resData[0].booking_id}`,
+              },
+              process?.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+            )
+            .then((response) => {
+              console.log("Email sent successfully:", response);
+            })
+            .catch((error) => {
+              console.error("Error sending email:", error);
+            });
+          setLoading(false);
+          setToast(true);
+          setTimeout(() => {
+            setToast(false);
+            router.push(`/tickets?bookingsId=${resData[0].booking_id}`);
+          }, 2000);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onSuccess = (reference: any) => {
     console.log(cartItems);
     if (reference.status === "success") {
       try {
-        console.log("calll0p");
         (async () => {
           const resData = await Promise.all(
             cartItems?.map(async (item) => {
@@ -67,7 +157,6 @@ const Cart = () => {
                 }
               );
               const data = await response.data;
-              console.log({ data });
               if (response.status === 201) {
                 return data;
               } else {
@@ -75,8 +164,6 @@ const Cart = () => {
               }
             })
           );
-
-          console.log(resData);
 
           if (resData?.length) {
             if (user?.email) {
@@ -133,11 +220,21 @@ const Cart = () => {
   return (
     <main className="min-h-screen max-w-screen-xl overflow-x-hidden mx-auto my-20 max-lg:px-4 lg:px-10 mt-20">
       <div className="mt-10">
+        {toast && (
+          <div className="toast toast-middle toast-center">
+            <div className="alert alert-success bg-primary border-none outline-none">
+              <span>Message sent successfully.</span>
+            </div>
+          </div>
+        )}
         <CheckoutModal
+          getFreeTickets={getFreeTickets}
           initializePayment={initializePayment}
           onClose={onClose}
           onSuccess={onSuccess}
           setInput={setInput}
+          loading={loading}
+          setLoading={setLoading}
           email={email}
         />
         <p className="font-bold text-lg mb-7">Tickets Cart</p>
@@ -161,20 +258,47 @@ const Cart = () => {
           </button>
         )}
         {user?.email && (
-          <button
-            className="btn bg-black mt-4 text-white hover:bg-gray-600"
-            onClick={() => {
-              if (!user?.email) {
-                //@ts-ignore
-                window?.modal_2.showModal();
-                return;
-              }
-              //@ts-ignore
-              initializePayment(onSuccess, onClose);
-            }}
-          >
-            Continue to Checkout
-          </button>
+          <>
+            {amount > 0 ? (
+              <button
+                className="btn bg-black mt-4 text-white hover:bg-gray-600"
+                onClick={() => {
+                  if (!user?.email) {
+                    //@ts-ignore
+                    window?.modal_2.showModal();
+                    return;
+                  }
+                  //@ts-ignore
+                  initializePayment(onSuccess, onClose);
+                }}
+              >
+                {loading ? (
+                  <span className="loading loading-dots loading-md"></span>
+                ) : (
+                  "Continue to Checkout"
+                )}
+              </button>
+            ) : (
+              <button
+                className="btn bg-black mt-4 text-white hover:bg-gray-600"
+                onClick={() => {
+                  if (!user?.email) {
+                    //@ts-ignore
+                    window?.modal_2.showModal();
+                    return;
+                  }
+                  //@ts-ignore
+                  getFreeTickets();
+                }}
+              >
+                {loading ? (
+                  <span className="loading loading-dots loading-md"></span>
+                ) : (
+                  "Continue to Checkout"
+                )}
+              </button>
+            )}
+          </>
         )}
       </div>
     </main>

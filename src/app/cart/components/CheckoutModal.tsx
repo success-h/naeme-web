@@ -1,5 +1,7 @@
+"use client";
+import { useCartContext } from "@/hooks/useCart";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { AiOutlineRight } from "react-icons/ai";
 
 type Props = {
@@ -11,6 +13,9 @@ type Props = {
   onClose: () => void;
   setInput: Dispatch<SetStateAction<string>>;
   email: string;
+  setLoading: (value: SetStateAction<boolean>) => void;
+  loading: boolean;
+  getFreeTickets: () => Promise<void>;
 };
 
 export function CheckoutModal({
@@ -18,7 +23,15 @@ export function CheckoutModal({
   onClose,
   onSuccess,
   setInput,
+  email,
+  getFreeTickets,
+  loading,
+  setLoading,
 }: Props) {
+  const { cartTotal } = useCartContext();
+  const amount = cartTotal();
+  const [error, setError] = useState("");
+
   return (
     <dialog id="modal_2" className="modal modal-middle">
       <form method="dialog" className="modal-box bg-white max-w-sm">
@@ -30,20 +43,50 @@ export function CheckoutModal({
         </p>
         <input
           type="text"
-          className="bg-gray-100 w-full h-12 px-4 rounded-lg mt-4 outline-gray-200"
+          className={`bg-gray-100 w-full h-12 px-4 rounded-lg mt-4 outline-gray-200 ${
+            !email && "border border-red-400"
+          }`}
           placeholder="Enter email address"
           onChange={(e) => setInput(e.target.value)}
         />
 
-        <button
-          className="btn bg-black mt-4 text-white hover:bg-gray-600"
-          onClick={() => {
-            //@ts-ignore
-            initializePayment(onSuccess, onClose);
-          }}
-        >
-          Pay Now
-        </button>
+        {amount > 0 ? (
+          <p
+            className="btn bg-black mt-4 text-white hover:bg-gray-600"
+            onClick={() => {
+              if (!email) {
+                setError("please enter a valid email to continue");
+                return;
+              }
+              //@ts-ignore
+              initializePayment(onSuccess, onClose);
+            }}
+          >
+            {loading ? (
+              <span className="loading loading-dots loading-md"></span>
+            ) : (
+              "Continue to Checkout"
+            )}
+          </p>
+        ) : (
+          <p
+            className="btn bg-black mt-4 text-white hover:bg-gray-600"
+            onClick={() => {
+              if (!email) {
+                setError("please enter a valid email to continue");
+                return;
+              }
+              //@ts-ignore
+              getFreeTickets();
+            }}
+          >
+            {loading ? (
+              <span className="loading loading-dots loading-md"></span>
+            ) : (
+              "Continue to Checkout"
+            )}
+          </p>
+        )}
       </form>
       <form method="dialog" className="modal-backdrop">
         <button>close</button>
