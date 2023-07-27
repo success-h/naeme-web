@@ -44,7 +44,7 @@ export default function HowItWorks() {
   }, []);
   return (
     <>
-      <div className="justify-between grid grid-cols-2 sm:grid-cols-3 md:flex gap-10 md:flex-wrap  px-4 lg:px-0 my-20 mx-auto max-w-[1038px]">
+      <div className="justify-between pt-10 grid grid-cols-2 sm:grid-cols-3 md:flex gap-10 md:flex-wrap  px-4 lg:px-0 my-20 mx-auto max-w-[1038px]">
         {imageUrl.map((i) => (
           <div
             data-aos="fade-up"

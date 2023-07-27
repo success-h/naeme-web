@@ -32,12 +32,12 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
           <SwiperSlide key={item.id}>
             <div>
               <div className="bg-[#000000ca] z-10 h-full w-full flex-col flex items-start justify-center absolute">
-                <div className="max-w-[960px]  px-12 w-full lg:ml-40">
+                <div className="max-w-[960px] mt-10 px-12 w-full lg:ml-40">
                   <p className="text-secondary text-sm sm:text-lg">
                     {moment(item.start_date).format("MMMM Do YYYY.")} at{" "}
                     {moment(item.start_time, "HH:mm:ss").format("hh:mm A")}
                   </p>
-                  <h1 className="text-4xl sm:text-6xl font-bold text-white">
+                  <h1 className="text-3xl sm:text-6xl font-bold text-white">
                     {item.title.slice(0, 8).toUpperCase()}
                     <span className="text-primary">
                       {item.title.slice(8).toUpperCase()}
@@ -47,7 +47,7 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
                     {item.description.slice(0, 300)}...
                   </p>
                   <Link href={`event/${item.id}`}>
-                    <button className="btn px-10 rounded-full bg-emerald-400 mt-4">
+                    <button className="btn px-10 rounded-full bg-primary mt-4 hover:bg-secondary">
                       Buy Tickets
                     </button>
                   </Link>
