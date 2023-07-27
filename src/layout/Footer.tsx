@@ -41,7 +41,7 @@ export function Footer() {
             </Link>
 
             <Link href="https://www.linkedin.com/company/naeme/">
-              <LiaLinkedinIn size={24} color="#ffffff" />
+              <LiaLinkedinIn size={29} color="#ffffff" />
             </Link>
           </div>
         </div>
