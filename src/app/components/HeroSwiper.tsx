@@ -31,8 +31,8 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
         {data?.slice(0, 4).map((item: EventDataTypes) => (
           <SwiperSlide key={item.id}>
             <div>
-              <div className="bg-[#000000ca] z-10 h-full w-full flex-col flex items-start justify-center absolute">
-                <div className="max-w-[960px] mt-10 px-12 w-full lg:ml-40">
+              <div className="bg-[#000000d0] z-10 h-full w-full flex-col flex items-start justify-center absolute">
+                <div className="max-w-[960px]  px-12 w-full lg:ml-40">
                   <p className="text-secondary text-sm sm:text-lg">
                     {moment(item.start_date).format("MMMM Do YYYY.")} at{" "}
                     {moment(item.start_time, "HH:mm:ss").format("hh:mm A")}
@@ -47,7 +47,7 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
                     {item.description.slice(0, 300)}...
                   </p>
                   <Link href={`event/${item.id}`}>
-                    <button className="btn px-10 rounded-full bg-primary mt-4 hover:bg-secondary">
+                    <button className="btn px-10 rounded-full bg-emerald-400 mt-4">
                       Buy Tickets
                     </button>
                   </Link>
@@ -70,7 +70,7 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
         <form
           // @ts-ignore
           onSubmit={handleSubmit}
-          className="flex border-2 rounded-full absolute right-0 left-0 mt-5 sm:-mt-32 z-20 border-primary items-center px-4 py-1 bg-white shadow-lg max-w-sm lg:max-w-lg mx-auto  h-14 w-full"
+          className="flex border-1 rounded-full absolute right-0 left-0 mt-5 sm:-mt-32 z-20 border-primary items-center px-4 py-1 bg-white max-w-sm lg:max-w-lg mx-auto  h-14 w-full"
         >
           <span className="mr-4">
             <FiSearch size={24} />
