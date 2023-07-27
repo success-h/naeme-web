@@ -174,7 +174,7 @@ const Cart = () => {
                   process?.env.NEXT_PUBLIC_EMAILJS_TEMP_ID,
                   {
                     email_to: user?.email,
-                    message: `https://www.naeme.app/dashboard`,
+                    message: `https://www.naeme.app/tickets?bookingsId=${resData[0].booking_id}`,
                   },
                   process?.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
                 )
