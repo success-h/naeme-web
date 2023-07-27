@@ -2,19 +2,29 @@ import { formatter } from "@/app/functions/functions";
 import { EventDataTypes, Ticket } from "../../../../../typings";
 import { useCartContext } from "@/hooks/useCart";
 import Link from "next/link";
+import Image from "next/image";
 type Props = {
   tickets: Ticket[];
   event: EventDataTypes;
 };
 export function TicketModal({ event, tickets }: Props) {
-  const { addToCart } = useCartContext();
+  const { addToCart, cartQuantity } = useCartContext();
 
   return (
     <dialog id="modal_1" className="modal modal-middle">
       <form method="dialog" className="modal-box bg-gray-50 max-w-lg">
-        <p className="font-bold text-lg mb-7 outline-none border-none">
-          Add tickets to cart
-        </p>
+        <label
+          tabIndex={0}
+          className="lg:hidden btn hover:border-none btn-ghost btn-circle hover:bg-white"
+        >
+          <div className="indicator">
+            <Image priority height={20} width={20} src="/Buy.svg" alt="buy" />
+
+            <span className="badge badge-md indicator-item bg-blue-400 border-none text-lg">
+              {cartQuantity}
+            </span>
+          </div>
+        </label>
         <button className="absolute top-5 right-7 text-lg">x</button>
         {tickets
           .filter((ticket) => ticket.price > 0)
@@ -38,15 +48,15 @@ export function TicketModal({ event, tickets }: Props) {
                     }
                     className="btn text-xs"
                   >
-                    Add to Cart
+                    Add
                   </p>
                 </div>
               </div>
             );
           })}
         <Link href="/cart">
-          <button className="w-full btn bg-secondary mt-10 self-end">
-            Go to checkout
+          <button className="w-full btn bg-black mt-10 self-end">
+            <p className="text-xs text-white">Go to checkout</p>
           </button>
         </Link>
       </form>
