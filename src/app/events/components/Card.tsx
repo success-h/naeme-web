@@ -22,7 +22,11 @@ export const Card = ({ event }: Props) => {
   });
 
   return (
-    <div data-aos="fade-up" className="card card-compact w-80 h-96">
+    <div
+      onClick={showDetailsHandler}
+      data-aos="fade-up"
+      className="card card-compact w-80 h-96"
+    >
       <figure>
         <Image
           className="hover:scale-105 bg-cover object-cover w-full transition-all overflow-hidden duration-500"
@@ -37,10 +41,10 @@ export const Card = ({ event }: Props) => {
       </figure>
       <div className="rounded-b-xl py-4 p-0 px-4 border">
         <h2 className="card-title"> {event.title}</h2>
-        <p className="text-xs">
+        <p className="text-sm">
           {moment(event.start_date).format("MMMM Do YYYY.")}
         </p>
-        <div className="font-medium text-secondary text-xs">
+        <div className="font-medium text-secondary text-lg mt-5">
           {event.lowest_price === event.highest_price ? (
             <p className="">
               {event.lowest_price == 0
@@ -57,11 +61,6 @@ export const Card = ({ event }: Props) => {
                 : ""}
             </div>
           )}
-        </div>
-        <div className="card-actions justify-end">
-          <button className="btn rounded-full" onClick={showDetailsHandler}>
-            View event
-          </button>
         </div>
       </div>
     </div>

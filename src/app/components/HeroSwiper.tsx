@@ -28,43 +28,45 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
         scrollbar={{ draggable: true }}
         loop
       >
-        {data?.slice(0, 4).map((item: EventDataTypes) => (
-          <SwiperSlide key={item.id}>
-            <div>
-              <div className="bg-[#000000d0] z-10 h-full w-full flex-col flex items-start justify-center absolute">
-                <div className="max-w-[960px] mt-14 sm:mt-0 px-12 w-full lg:ml-40">
-                  <p className="text-secondary text-sm sm:text-lg">
-                    {moment(item.start_date).format("MMMM Do YYYY.")} at{" "}
-                    {moment(item.start_time, "HH:mm:ss").format("hh:mm A")}
-                  </p>
-                  <h1 className="text-3xl sm:text-6xl font-bold text-white">
-                    {item.title.slice(0, 8).toUpperCase()}
-                    <span className="text-primary">
-                      {item.title.slice(8).toUpperCase()}
-                    </span>
-                  </h1>
-                  <p className="text-start hidden sm:block text-gray-300 mt-3">
-                    {item.description.slice(0, 300)}...
-                  </p>
-                  <Link href={`event/${item.id}`}>
-                    <button className="btn px-10 rounded-full bg-emerald-400 mt-4">
-                      Buy Tickets
-                    </button>
-                  </Link>
+        {data
+          ?.filter((i) => i.featured === true)
+          .map((item: EventDataTypes) => (
+            <SwiperSlide key={item.id}>
+              <div>
+                <div className="bg-[#000000d0] z-10 h-full w-full flex-col flex items-start justify-center absolute">
+                  <div className="max-w-[960px] mt-14 sm:mt-0 px-12 w-full lg:ml-40">
+                    <p className="text-secondary text-sm sm:text-lg">
+                      {moment(item.start_date).format("MMMM Do YYYY.")} at{" "}
+                      {moment(item.start_time, "HH:mm:ss").format("hh:mm A")}
+                    </p>
+                    <h1 className="text-3xl sm:text-6xl font-bold text-white">
+                      {item.title.slice(0, 8).toUpperCase()}
+                      <span className="text-primary">
+                        {item.title.slice(8).toUpperCase()}
+                      </span>
+                    </h1>
+                    <p className="text-start hidden sm:block text-gray-300 mt-3">
+                      {item.description.slice(0, 300)}...
+                    </p>
+                    <Link href={`event/${item.id}`}>
+                      <button className="btn px-10 rounded-full bg-emerald-400 mt-4">
+                        Buy Tickets
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+                <div className="h-96 sm:h-[700px]">
+                  <Image
+                    alt="image"
+                    src={item.image}
+                    className="w-full object-cover object-top"
+                    layout="fill"
+                    priority
+                  />
                 </div>
               </div>
-              <div className="h-96 sm:h-[700px]">
-                <Image
-                  alt="image"
-                  src={item.image}
-                  className="w-full object-cover object-top"
-                  layout="fill"
-                  priority
-                />
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          ))}
       </Swiper>
       <div className="px-4 w-full">
         <form
