@@ -8,8 +8,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import HowItWorks from "./HowItWorks";
-import Router from "next/router";
 
 export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
   const [inputValue, setInputValue] = useState("");
@@ -33,7 +31,7 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
         {data?.slice(0, 4).map((item: EventDataTypes) => (
           <SwiperSlide key={item.id}>
             <div>
-              <div className="bg-[#00000092] z-10 h-full w-full flex-col flex items-start justify-center absolute">
+              <div className="bg-[#000000ca] z-10 h-full w-full flex-col flex items-start justify-center absolute">
                 <div className="max-w-[960px]  px-12 w-full lg:ml-40">
                   <p className="text-secondary text-sm sm:text-lg">
                     {moment(item.start_date).format("MMMM Do YYYY.")} at{" "}
@@ -45,7 +43,7 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
                       {item.title.slice(8).toUpperCase()}
                     </span>
                   </h1>
-                  <p className="text-start  text-gray-300 mt-3">
+                  <p className="text-start hidden sm:block text-gray-300 mt-3">
                     {item.description.slice(0, 300)}...
                   </p>
                   <Link href={`event/${item.id}`}>
@@ -55,7 +53,7 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
                   </Link>
                 </div>
               </div>
-              <div className="h-[780px]">
+              <div className="h-96 sm:h-[700px]">
                 <Image
                   alt="image"
                   src={item.image}
@@ -72,7 +70,7 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
         <form
           // @ts-ignore
           onSubmit={handleSubmit}
-          className="flex border-2 rounded-full absolute right-0 left-0 -mt-32 z-20 border-primary items-center px-4 py-1 bg-white shadow-lg max-w-sm lg:max-w-lg mx-auto  h-14 w-full"
+          className="flex border-2 rounded-full absolute right-0 left-0 mt-5 sm:-mt-32 z-20 border-primary items-center px-4 py-1 bg-white shadow-lg max-w-sm lg:max-w-lg mx-auto  h-14 w-full"
         >
           <span className="mr-4">
             <FiSearch size={24} />

@@ -6,12 +6,16 @@ export const formatter = new Intl.NumberFormat("en-NG", {
 });
 
 export const getEvents = async () => {
-  const response = await api.get("/events");
-  const data = await response.data;
-  if (!data) {
-    return null;
+  try {
+    const response = await api.get("/events");
+    const data = await response.data;
+    if (!data) {
+      return null;
+    }
+    return data;
+  } catch (error) {
+    console.log(error);
   }
-  return data;
 };
 
 export const getEvent = async (id: string) => {
