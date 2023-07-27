@@ -49,8 +49,8 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
                       {item.description.slice(0, 300)}...
                     </p>
                     <Link href={`event/${item.id}`}>
-                      <button className="btn px-10 rounded-full bg-emerald-400 mt-4">
-                        Buy Tickets
+                      <button className="btn px-10 rounded-full bg-emerald-400 border-none text-white mt-4">
+                        Get Tickets
                       </button>
                     </Link>
                   </div>
@@ -72,7 +72,7 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
         <form
           // @ts-ignore
           onSubmit={handleSubmit}
-          className="flex sm:border-2 rounded-full absolute right-0 left-0 mt-5 sm:-mt-32 z-20 border-primary items-center px-4 py-1 bg-white max-w-sm lg:max-w-lg mx-auto  h-14 w-full"
+          className="flex border border-gray-200 sm:border-2 rounded-full absolute right-0 left-0 mt-5 sm:-mt-32 z-20 sm:border-primary items-center px-4 py-1 bg-white max-w-sm lg:max-w-lg mx-auto  h-14 w-full"
         >
           <span className="mr-4">
             <FiSearch size={24} />
