@@ -32,7 +32,7 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
           <SwiperSlide key={item.id}>
             <div>
               <div className="bg-[#000000d0] z-10 h-full w-full flex-col flex items-start justify-center absolute">
-                <div className="max-w-[960px]  px-12 w-full lg:ml-40">
+                <div className="max-w-[960px] mt-14 sm:mt-0 px-12 w-full lg:ml-40">
                   <p className="text-secondary text-sm sm:text-lg">
                     {moment(item.start_date).format("MMMM Do YYYY.")} at{" "}
                     {moment(item.start_time, "HH:mm:ss").format("hh:mm A")}
@@ -66,11 +66,11 @@ export function HeroSwiper({ data }: { data: EventDataTypes[] }) {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="px-4 w-full ">
+      <div className="px-4 w-full">
         <form
           // @ts-ignore
           onSubmit={handleSubmit}
-          className="flex border-1 rounded-full absolute right-0 left-0 mt-5 sm:-mt-32 z-20 border-primary items-center px-4 py-1 bg-white max-w-sm lg:max-w-lg mx-auto  h-14 w-full"
+          className="flex sm:border-2 rounded-full absolute right-0 left-0 mt-5 sm:-mt-32 z-20 border-primary items-center px-4 py-1 bg-white max-w-sm lg:max-w-lg mx-auto  h-14 w-full"
         >
           <span className="mr-4">
             <FiSearch size={24} />
