@@ -36,8 +36,8 @@ export function Details(event: EventDataTypes) {
 
   return (
     <>
-      <div className="lg:ml-10 lg:col-span-3 lg:col-start-3 lg:col-end-6 max-lg:mt-10">
-        <h1 className="text-4xl font-bold">{event.title}</h1>
+      <div className="lg:ml-10 lg:col-span-3 lg:col-start-3 lg:col-end-6 max-lg:mt-10 max-lg:px-6 lg:px-2">
+        <h1 className="text-4xl font-black">{event.title}</h1>
         {timeBetween.asSeconds() < 0 ? null : (
           <div data-aos="fade-up" className="mb-4">
             <Countdown date={end_date} className="text-xl" />
@@ -123,21 +123,26 @@ export function Details(event: EventDataTypes) {
         </div>
 
         <div className="">
-          <h2>About</h2>
-          <article className="text-sm mt-2">
+          <h2 data-aos="fade-up">About</h2>
+          <article data-aos="fade-up" className="text-sm mt-2">
             {event.description.slice(0, 490)}
           </article>
         </div>
-        <div className="collapse bg-base-200 px-0">
-          <input type="checkbox" />
-          <div className="collapse-title text-xl font-medium px-0 inline-flex justify-between items-center">
-            <p>Terms and Conditions for this event</p>
-            <BsChevronDown />
+        {event.terms && (
+          <div className="collapse bg-base-200 px-0">
+            <input type="checkbox" />
+            <div
+              data-aos="fade-up"
+              className="collapse-title text-xl font-medium px-0 inline-flex justify-between items-center"
+            >
+              <p>Terms and Conditions for this event</p>
+              <BsChevronDown />
+            </div>
+            <div className="collapse-content text-xs text-gray-500">
+              <p>{event.terms}</p>
+            </div>
           </div>
-          <div className="collapse-content text-xs text-gray-500">
-            <p>{event.terms}</p>
-          </div>
-        </div>
+        )}
         <div className="lg:hidden p-5 flex flex-col left-0 right-0 fixed w-full rounded-t-2xl bg-gray-100  shadow-xl rounded-tl-xl bottom-0 z-20">
           <>
             <div className="text-wine-700 mx-auto font-sans text-[14px] font-medium">

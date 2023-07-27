@@ -18,4 +18,4 @@ export default async function Hero() {
   );
 }
 
-export const revalidate = 3;
+export const revalidate = 60;
