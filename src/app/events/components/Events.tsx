@@ -125,7 +125,7 @@ export function Events({ params }: Props) {
         )}
       </form>
 
-      <div className="mt-20 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 place-items-center sm:place-items-start gap-y-10">
+      <div className="mt-20 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 place-items-center sm:place-items-start gap-10">
         {events?.map((event) => (
           <Card event={event} key={event.id} />
         ))}
