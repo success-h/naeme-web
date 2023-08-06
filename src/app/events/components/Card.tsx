@@ -25,7 +25,7 @@ export const Card = ({ event }: Props) => {
     <div
       onClick={showDetailsHandler}
       data-aos="fade-up"
-      className="card card-compact w-full max-w-sm h-96"
+      className="card card-compact w-full max-w-sm h-96 cursor-pointer"
     >
       <figure>
         <Image

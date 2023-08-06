@@ -13,7 +13,7 @@ export function TicketModal({ event, tickets }: Props) {
 
   return (
     <dialog id="modal_1" className="modal modal-middle">
-      <form method="dialog" className="modal-box bg-gray-50 max-w-lg">
+      <form method="dialog" className="modal-box bg-gray-50 max-w-lg pt-5">
         <label
           tabIndex={0}
           className="lg:hidden btn hover:border-none btn-ghost btn-circle hover:bg-white"
@@ -27,7 +27,7 @@ export function TicketModal({ event, tickets }: Props) {
           </div>
         </label>
         <button className="absolute top-5 right-7 text-lg">
-          <IoIosCloseCircle size={20} />
+          <IoIosCloseCircle size={25} />
         </button>
         {tickets.map(({ id, price, title }) => {
           return (

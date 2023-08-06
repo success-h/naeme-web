@@ -10,8 +10,7 @@ import React, { useCallback, useEffect } from "react";
 
 export function Navbar() {
   const { user, setUser } = useUserContext();
-  const { cartQuantity, cartTotal } = useCartContext();
-
+  const { cartQuantity, cartTotal, cartItems } = useCartContext();
   const router = useRouter();
 
   const logout = async () => {

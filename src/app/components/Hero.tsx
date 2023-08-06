@@ -6,9 +6,11 @@ import { HeroSwiper } from "./HeroSwiper";
 import HowItWorks from "./HowItWorks";
 import { getEvents } from "../functions/functions";
 import { FeaturedEvents } from "./FeaturedEvents";
+import { useUserContext } from "@/hooks/useUser";
 
 export default async function Hero() {
   const data = await getEvents();
+
   return (
     <>
       <HeroSwiper data={...data.results} />

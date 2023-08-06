@@ -1,3 +1,4 @@
+"use client";
 import {
   FC,
   PropsWithChildren,
@@ -12,6 +13,7 @@ import { useUserContext } from "@/hooks/useUser";
 import { User } from "../../typings";
 import { getUser } from "@/app/signin/utils/function";
 import { Footer } from "./Footer";
+import { CartProvider } from "@/context/CartContext";
 const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 interface Props {
   children: ReactNode;
@@ -34,9 +36,13 @@ export const MainLayout = ({ children }: Props) => {
 
   return (
     <GoogleOAuthProvider clientId={clientId ? clientId : ""}>
-      <Navbar />
-      {children}
-      <Footer />
+      <UserProvider>
+        <CartProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </CartProvider>
+      </UserProvider>
     </GoogleOAuthProvider>
   );
 };

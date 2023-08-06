@@ -1,14 +1,16 @@
-"use client";
 import { MainLayout } from "@/layout/MainLayout";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-
-import { UserProvider } from "@/context/UserContext";
-import { CartProvider } from "@/context/CartContext";
-import { Head } from "next/document";
-
 const montserrat = Montserrat({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Naeme Events - BOOK YOUR TICKETS SEAMLESSLY",
+  description: "Discover amazing events happening around you.",
+  keywords: ["Naeme Events", "Tickets", "Ticketing", "Booking"],
+  authors: [{ name: "Success Hycenth", url: "https://success-hy.vercel.app" }],
+  creator: "Success Hycenth",
+};
 
 export default function RootLayout({
   children,
@@ -24,11 +26,7 @@ export default function RootLayout({
         />
       </head>
       <body className={montserrat.className}>
-        <UserProvider>
-          <CartProvider>
-            <MainLayout>{children}</MainLayout>
-          </CartProvider>
-        </UserProvider>
+        <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );

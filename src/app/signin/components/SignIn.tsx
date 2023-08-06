@@ -9,7 +9,7 @@ import { useUserContext } from "@/hooks/useUser";
 
 export const Signin = () => {
   const [loading, setLoading] = useState(false);
-  const { setUser, user } = useUserContext();
+  const { setUser } = useUserContext();
 
   const router = useRouter();
 
