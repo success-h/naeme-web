@@ -1,10 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { QrReader } from "react-qr-reader";
-
-import { FaArrowLeft } from "react-icons/fa";
-import { useUserContext } from "@/hooks/useUser";
 
 function QRscanner() {
   const [qrState, setQrState] = useState(false);

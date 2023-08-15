@@ -16,7 +16,7 @@ export function TicketModal({ event, tickets }: Props) {
       <form method="dialog" className="modal-box bg-gray-50 max-w-lg pt-5">
         <label
           tabIndex={0}
-          className="lg:hidden btn hover:border-none btn-ghost btn-circle hover:bg-white"
+          className="btn hover:border-none btn-ghost btn-circle hover:bg-white"
         >
           <div className="indicator">
             <Image priority height={20} width={20} src="/Buy.svg" alt="buy" />
@@ -61,7 +61,7 @@ export function TicketModal({ event, tickets }: Props) {
         })}
         <Link href="/cart">
           <button className="w-full btn bg-black hover:bg-gray-700 mt-10 self-end">
-            <p className="text-xs text-white">Go to checkout</p>
+            <p className="text-xs text-white">checkout</p>
           </button>
         </Link>
       </form>
