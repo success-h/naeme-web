@@ -144,32 +144,21 @@ export function Navbar() {
                             tabIndex={0}
                             className="btn btn-ghost btn-circle avatar"
                           >
-                            <div className="w-10 rounded-full">
+                            <Link
+                              href="/dashboard"
+                              className="w-10 rounded-full"
+                            >
                               <Image
                                 width={40}
                                 alt="image"
                                 height={40}
                                 src={user.image}
                               />
-                            </div>
-                          </label>
-                          <div
-                            tabIndex={0}
-                            className="bg-zinc-800 menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52"
-                          >
+                            </Link>
                             <p className="mb-3">
-                              <Link
-                                href="/dashboard"
-                                className="justify-between"
-                              >
-                                Profile
-                              </Link>
-                            </p>
-
-                            <p>
                               <button onClick={logout}>Logout</button>
                             </p>
-                          </div>
+                          </label>
                         </div>
                       ) : (
                         <p>
@@ -237,7 +226,7 @@ export function Navbar() {
                   {user ? (
                     <div className="dropdown dropdown-bottom dropdown-left text-gray-600">
                       <label
-                        tabIndex={0}
+                        tabIndex={-1}
                         className="btn btn-ghost btn-circle avatar"
                       >
                         <div className="w-10 rounded-full">
@@ -250,7 +239,7 @@ export function Navbar() {
                         </div>
                       </label>
                       <ul
-                        tabIndex={0}
+                        tabIndex={-1}
                         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-100 rounded-box w-52"
                       >
                         <li className="my-2 px-2">
