@@ -134,10 +134,7 @@ export function Navbar() {
                             tabIndex={0}
                             className="btn btn-ghost btn-circle avatar"
                           >
-                            <Link
-                              href="/dashboard"
-                              className="w-10 rounded-full"
-                            >
+                            <Link href="/dashboard" className="rounded-full">
                               <Image
                                 width={40}
                                 alt="image"
