@@ -2,8 +2,9 @@ import api from "../../../../api";
 
 export async function getUser() {
   const response = await fetch(`/api/user`);
+  const user = await response.json();
+
   if (response.status === 200) {
-    const user = await response.json();
     return user;
   } else {
     return;

@@ -28,6 +28,7 @@ const Tickets = ({ params }: { params: { id: string } }) => {
       const ticket = await getSingleTicket(params.id);
       if (ticket) {
         setTicket(ticket);
+        setIsVerify(ticket.used);
         setLoading(false);
       }
       setLoading(false);
@@ -35,7 +36,7 @@ const Tickets = ({ params }: { params: { id: string } }) => {
   }, []);
 
   return (
-    <div className="max-w-screen-lg min-h-screen max-lg:px-4 mx-auto bg-gray-50">
+    <div className="max-w-screen-lg min-h-screen max-lg:px-4 mx-auto">
       <div className="w-full px-4 sm:px-0 py-40 m-auto sm:h-screen">
         <p className="text-lg font-bold mb-4 ml-7">My tickets</p>
 
@@ -62,7 +63,7 @@ const Tickets = ({ params }: { params: { id: string } }) => {
             {ticket?.event_name}
           </div>
           <div className="flex justify-between items-center mx-4 my-3">
-            <div className="bg-secondary text-white px-3 flex  items-center rounded-2xl">
+            <div className="px-3 flex  items-center rounded-2xl">
               <IoTicketOutline size={25} className="px-1" />
               <p className="text-sm px-1">{ticket?.title}</p>
             </div>
@@ -82,7 +83,7 @@ const Tickets = ({ params }: { params: { id: string } }) => {
                 <div
                   className={`${
                     isVerify ? "bg-emerald-600" : "bg-sky-700"
-                  } items-center justify-center px-3 flex rounded-full text-white`}
+                  } items-center justify-center p-3 flex rounded-full text-white`}
                 >
                   {!isVerify ? (
                     <GoUnverified size={25} className="px-1" />
@@ -128,7 +129,7 @@ const Tickets = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
           <div className="grid px-4 mt-3">
-            <Countdown className="text-gray-500 text-xl" date={datetime} />
+            <Countdown className="text-gray-500 text-lg" date={datetime} />
           </div>
         </div>
       </div>

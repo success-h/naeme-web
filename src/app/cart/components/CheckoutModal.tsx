@@ -47,12 +47,13 @@ export function CheckoutModal({
             !email && "border border-red-400"
           }`}
           placeholder="Enter email address"
+          required
           onChange={(e) => setInput(e.target.value)}
         />
 
-        {amount > 0 ? (
+        {email && amount > 0 ? (
           <p
-            className="btn bg-black mt-4 text-white hover:bg-gray-600"
+            className="btn bg-black mt-4 text-white w-full hover:bg-gray-600"
             onClick={() => {
               if (!email) {
                 setError("please enter a valid email to continue");
@@ -69,23 +70,26 @@ export function CheckoutModal({
             )}
           </p>
         ) : (
-          <p
-            className="btn bg-black mt-4 text-white hover:bg-gray-600"
-            onClick={() => {
-              if (!email) {
-                setError("please enter a valid email to continue");
-                return;
-              }
-              //@ts-ignore
-              getFreeTickets();
-            }}
-          >
-            {loading ? (
-              <span className="loading loading-dots loading-md"></span>
-            ) : (
-              "Continue to Checkout"
-            )}
-          </p>
+          email && (
+            <span
+              typeof="button"
+              className="btn bg-black mt-4 text-white w-full hover:bg-gray-600"
+              onClick={() => {
+                if (!email) {
+                  setError("please enter a valid email to continue");
+                  return;
+                }
+                //@ts-ignore
+                getFreeTickets();
+              }}
+            >
+              {loading ? (
+                <span className="loading loading-dots loading-md"></span>
+              ) : (
+                "Continue to Checkout"
+              )}
+            </span>
+          )
         )}
       </form>
       <form method="dialog" className="modal-backdrop">

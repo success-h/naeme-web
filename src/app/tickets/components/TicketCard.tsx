@@ -34,7 +34,7 @@ const TicketCard = ({ ticket }: { ticket: PaidTicketDataTypes }) => {
   return (
     <div
       onClick={showDetailsHandler}
-      className="py-7 bg-[#fbfbfb] w-full max-w-96 text-gray-700 my-7 border mx-auto rounded-3xl flex flex-col"
+      className="py-7 bg-[#fbfbfb] max-w-xs text-gray-700 my-7 border mx-auto rounded-3xl flex flex-col"
     >
       {ticket?.qr_code && (
         <div className="mx-auto relative flex h-56 w-56">

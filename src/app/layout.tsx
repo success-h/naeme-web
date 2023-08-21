@@ -1,7 +1,13 @@
 import { MainLayout } from "@/layout/MainLayout";
+import { Suspense } from "react";
+
 import "./globals.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { UserProvider } from "@/context/UserContext";
+import Loading from "./loading";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,7 +32,11 @@ export default function RootLayout({
         />
       </head>
       <body className={montserrat.className}>
-        <MainLayout>{children}</MainLayout>
+        <Suspense fallback={<Loading />}>
+          <UserProvider>
+            <MainLayout> {children}</MainLayout>
+          </UserProvider>
+        </Suspense>
       </body>
     </html>
   );

@@ -185,13 +185,13 @@ export function Navbar() {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-100 rounded-box w-52"
                       >
-                        <li>
+                        <li className="my-2 px-2">
                           <Link href="/dashboard" className="justify-between">
                             Profile
                           </Link>
                         </li>
 
-                        <li>
+                        <li className="my-2 px-2">
                           <button onClick={logout}>Logout</button>
                         </li>
                       </ul>

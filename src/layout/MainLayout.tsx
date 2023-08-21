@@ -1,13 +1,6 @@
 "use client";
-import {
-  FC,
-  PropsWithChildren,
-  ReactNode,
-  useCallback,
-  useEffect,
-} from "react";
+import { ReactNode, useCallback, useEffect } from "react";
 import { Navbar } from "./Navbar";
-import { UserProvider } from "@/context/UserContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useUserContext } from "@/hooks/useUser";
 import { User } from "../../typings";
@@ -23,8 +16,8 @@ export const MainLayout = ({ children }: Props) => {
   let { setUser } = useUserContext();
   const loadUser = useCallback(async () => {
     try {
-      const { user } = await getUser();
-      setUser(user);
+      const data = await getUser();
+      setUser(data.user);
     } catch (err) {
       // // console.log(err);
     }
@@ -36,13 +29,11 @@ export const MainLayout = ({ children }: Props) => {
 
   return (
     <GoogleOAuthProvider clientId={clientId ? clientId : ""}>
-      <UserProvider>
-        <CartProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </CartProvider>
-      </UserProvider>
+      <CartProvider>
+        <Navbar />
+        {children}
+        <Footer />
+      </CartProvider>
     </GoogleOAuthProvider>
   );
 };

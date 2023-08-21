@@ -93,7 +93,6 @@ const Cart = () => {
             .catch((error) => {
               // console.error("Error sending email:", error);
             });
-          setLoading(false);
           setToast(true);
           setTimeout(() => {
             setToast(false);
@@ -221,9 +220,9 @@ const Cart = () => {
     <main className="min-h-screen max-w-screen-xl overflow-x-hidden mx-auto my-20 max-lg:px-4 lg:px-10 mt-20">
       <div className="mt-10">
         {toast && (
-          <div className="toast toast-middle toast-center">
+          <div className="toast toast-bottom toast-center">
             <div className="alert alert-success bg-primary border-none outline-none">
-              <span>Message sent successfully.</span>
+              <span>Ticket added successfully.</span>
             </div>
           </div>
         )}
@@ -261,13 +260,14 @@ const Cart = () => {
           <>
             {amount > 0 ? (
               <button
-                className="btn bg-black mt-4 text-white hover:bg-gray-600"
+                className="btn bg-black mt-4  max-w-xs w-full text-white hover:bg-gray-600"
                 onClick={() => {
                   if (!user?.email) {
                     //@ts-ignore
                     window?.modal_2.showModal();
                     return;
                   }
+                  setLoading(true);
                   //@ts-ignore
                   initializePayment(onSuccess, onClose);
                 }}
@@ -280,7 +280,7 @@ const Cart = () => {
               </button>
             ) : (
               <button
-                className="btn bg-black mt-4 text-white hover:bg-gray-600"
+                className="btn bg-black mt-4  max-w-xs w-full text-white hover:bg-gray-600"
                 onClick={() => {
                   if (!user?.email) {
                     //@ts-ignore
