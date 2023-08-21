@@ -115,16 +115,6 @@ export function Navbar() {
                   className="menu menu-sm dropdown-content mt-16 -mr-10 z-[1] p-2 shadow bg-zinc-900 rounded-box"
                 >
                   <div className="bg-zinc-900 z-30 menu p-4 w-64 h-full gap-y-4 text-gray-500">
-                    <Link href="/" className="px-2 cursor-pointer my-5">
-                      <Image
-                        className="sm:h-[17px] justify-center self-center"
-                        src="/logo.svg"
-                        height={20}
-                        width={120}
-                        priority
-                        alt="logo"
-                      />
-                    </Link>
                     <li>
                       <Link href="/events">Explore events</Link>
                     </li>
