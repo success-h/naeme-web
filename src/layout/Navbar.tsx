@@ -143,6 +143,7 @@ export function Navbar() {
                                 alt="image"
                                 height={40}
                                 src={user.image}
+                                className="rounded-full"
                               />
                             </Link>
                             <p className="mb-3">
