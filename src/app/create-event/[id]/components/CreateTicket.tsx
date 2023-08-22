@@ -61,26 +61,26 @@ export function CreateTicket({ id, access }: { id: string; access?: string }) {
     setLoading(true);
     const { title, price, qty } = data;
     // console.log({ data });
+    const formData = new FormData();
+    formData.append("price", price ?? price);
+    formData.append("title", title);
+    // @ts-ignore
+    formData.append("quantity", Number(qty));
+    // @ts-ignore
+    formData.append("event", id);
+    // @ts-ignore
+    formData.append("owner", user?.id);
+    // @ts-ignore
+    formData.append("is_paid", Number(price) > 0 ? true : false);
 
     try {
-      const response = await api.post(
-        "/tickets/",
-        {
-          price: price ?? price,
-          title: title,
-          quantity: Number(qty),
-          event: id,
-          owner: user?.id,
-          is_paid: Number(price) > 0 ? true : false,
+      const response = await api.post("/tickets/", formData, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${access}`,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Bearer ${access}`,
-          },
-        }
-      );
+      });
       console.log({ "Response:": response.status });
       if (response.status === 201) {
         setToste(true);
@@ -131,12 +131,7 @@ export function CreateTicket({ id, access }: { id: string; access?: string }) {
                       className="outline-none rounded-3xl px-5 py-3 bg-[#f4f4f4] bg-none my-2"
                       type={type}
                       placeholder={placeholder}
-                      {...register(
-                        inputName,
-                        inputName != "price"
-                          ? { required: true }
-                          : { required: false }
-                      )}
+                      {...register(inputName, { required: false })}
                     />
                   </div>
                 )
