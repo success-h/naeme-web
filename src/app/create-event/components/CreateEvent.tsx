@@ -132,7 +132,6 @@ function CreateEventComponent({ access }: { access: string | undefined }) {
 
           router.push(`/create-event/${id}`);
           setLoading(false);
-          return response;
         } else {
           setLoading(false);
           // console.log(data);
@@ -305,7 +304,7 @@ function CreateEventComponent({ access }: { access: string | undefined }) {
                     } bg-gray-100 outline-none p-4 text-sm h-12 rounded-3xl bg-none my-2`}
                     type="url"
                     placeholder="let people know who is organizing"
-                    {...register("website", { required: true })}
+                    {...register("website", { required: false })}
                   />
                 </div>
               </div>
@@ -317,7 +316,7 @@ function CreateEventComponent({ access }: { access: string | undefined }) {
               <div className="flex flex-col my-4 ">
                 <textarea
                   placeholder="Terms and conditions for this event"
-                  {...register("terms", { required: true })}
+                  {...register("terms")}
                   className={`outline-none text-sm p-4 h-28 rounded-3xl sm:h-44  bg-none my-2 text-gray-600 ${
                     errors.terms
                       ? "border border-red-500"
@@ -360,6 +359,15 @@ function CreateEventComponent({ access }: { access: string | undefined }) {
                   </button>
                 )}
               </div>
+            )}
+
+            {!user && (
+              <Link
+                href={"/signin"}
+                className={` btn my-5 bg-black hover:bg-gray-400 w-full text-white`}
+              >
+                Please sign in to continue
+              </Link>
             )}
           </form>
         </>

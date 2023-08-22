@@ -61,43 +61,43 @@ export function CreateTicket({ id, access }: { id: string; access?: string }) {
     setLoading(true);
     const { title, price, qty } = data;
     // console.log({ data });
-    const formData = new FormData();
-    formData.append("price", price);
-    formData.append("title", title);
-    formData.append("quantity", qty);
-    // @ts-ignore
-    formData.append("event", id);
-    // @ts-ignore
-    formData.append("owner", user?.id);
-    // @ts-ignore
-    formData.append("is_paid", Number(price) > 0 ? true : false);
 
     try {
-      (async () => {
-        const response = await api.post("/tickets/", formData, {
+      const response = await api.post(
+        "/tickets/",
+        {
+          price: price ?? price,
+          title: title,
+          quantity: Number(qty),
+          event: id,
+          owner: user?.id,
+          is_paid: Number(price) > 0 ? true : false,
+        },
+        {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
             Authorization: `Bearer ${access}`,
           },
-        });
-
-        if (response.status === 201) {
-          setToste(true);
-          setLoading(false);
-          reset();
-          setTimeout(() => {
-            setToste(false);
-          }, 2000);
-        } else {
-          setLoading(false);
-          return response.status;
         }
-      })();
+      );
+      console.log({ "Response:": response.status });
+      if (response.status === 201) {
+        setToste(true);
+        setLoading(false);
+        reset();
+        setTimeout(() => {
+          setToste(false);
+        }, 2000);
+      } else {
+        setLoading(false);
+        return response.status;
+      }
     } catch (errors) {
       setLoading(false);
     }
   };
+
   return (
     <>
       {toste && (
@@ -112,8 +112,7 @@ export function CreateTicket({ id, access }: { id: string; access?: string }) {
         <div className="w-full mb-10 flex items-center justify-start my-5 p-4 rounded-lg bg-orange-100 text-gray-800">
           <IoWarning size={20} className="text-amber-500 mr-3 w-10" />
           <p className="text-sm">
-            Please Leave the ticket price blank for a free event, and create
-            only one ticket if you are hosting a free event
+            Please Leave the ticket price blank for a free Event.
           </p>
         </div>
         <div>

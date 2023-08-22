@@ -16,7 +16,6 @@ export const Signin = () => {
   const signIn = async (token: string | undefined) => {
     setLoading(true);
     try {
-      console.log(token);
       const response = await api.post(`/account/google/`, {
         auth_token: token,
       });
