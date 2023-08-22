@@ -81,7 +81,6 @@ export function CreateTicket({ id, access }: { id: string; access?: string }) {
           Authorization: `Bearer ${access}`,
         },
       });
-      console.log({ "Response:": response.status });
       if (response.status === 201) {
         setToste(true);
         setLoading(false);
