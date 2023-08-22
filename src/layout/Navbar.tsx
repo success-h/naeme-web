@@ -114,7 +114,7 @@ export function Navbar() {
                   tabIndex={0}
                   className="menu menu-sm dropdown-content mt-16 -mr-10 z-[1] p-2 shadow bg-zinc-900 rounded-box"
                 >
-                  <div className="bg-zinc-900 z-30 menu p-4 w-64 h-full gap-y-4 text-gray-500">
+                  <div className="bg-zinc-900 py-4 z-30 menu p-4 w-64 h-full gap-y-4 text-gray-200">
                     <li>
                       <Link href="/events">Explore events</Link>
                     </li>
@@ -126,6 +126,14 @@ export function Navbar() {
                         Create events
                       </Link>
                     </li>
+
+                    {user && (
+                      <li onClick={logout}>
+                        <Link href={user ? "/create-event" : "/signin"}>
+                          Logout
+                        </Link>
+                      </li>
+                    )}
 
                     <li>
                       {user ? (
@@ -143,9 +151,6 @@ export function Navbar() {
                                 className="rounded-full"
                               />
                             </Link>
-                            <p className="mb-3">
-                              <button onClick={logout}>Logout</button>
-                            </p>
                           </label>
                         </div>
                       ) : (
