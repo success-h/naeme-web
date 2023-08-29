@@ -7,6 +7,7 @@ type Ticket = {
   highest_price: number;
   title: string;
   quantity: number;
+  available_tickets: number;
   event: string;
   owner: string;
 };
@@ -89,12 +90,15 @@ interface CartItems {
   //   lowest_price: number;
   title: string;
   quantity: number;
+  available_tickets: number;
   event: string;
   eventTitle: string;
 }
 interface AddToCart {
   id: string;
   price: number;
+  quantity: number;
+  available_tickets: number;
   title: string;
   eventItem: EventDataTypes;
 }

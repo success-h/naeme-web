@@ -40,6 +40,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const AvailableTicket =
       ticket.eventItem?.total_ticket_count -
       ticket.eventItem?.total_sold_tickets;
+
     setCartItems((currItems) => {
       if (!currItems.find((item) => item.id === ticket.id)) {
         return [
@@ -50,13 +51,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
             event: ticket.eventItem.id,
             price: ticket.price,
             quantity: 1,
+            ticket_qty: ticket.quantity,
             eventTitle: ticket.eventItem.title,
+            available_tickets: ticket.available_tickets,
           },
         ];
       } else {
         return currItems.map((item) => {
-          if (item.id === ticket.id && cartQuantity < AvailableTicket) {
-            return { ...item, quantity: item.quantity + 1 };
+          if (
+            item.id === ticket.id &&
+            item.quantity < ticket.available_tickets
+          ) {
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+              ticket_qty: ticket.quantity,
+            };
           } else {
             return item;
           }
@@ -67,9 +77,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const incrementCartItem = (id: string) => {
     setCartItems((prevCart) =>
-      prevCart.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
+      prevCart.map((item) => {
+        return item.id === id
+          ? {
+              ...item,
+              quantity:
+                item.quantity < item.available_tickets
+                  ? item.quantity + 1
+                  : item.quantity + 0,
+            }
+          : item;
+      })
     );
   };
 

@@ -29,7 +29,7 @@ export function TicketModal({ event, tickets }: Props) {
         <button className="absolute top-5 right-7 text-lg">
           <IoIosCloseCircle size={25} />
         </button>
-        {tickets.map(({ id, price, title }) => {
+        {tickets.map(({ id, price, title, quantity, available_tickets }) => {
           return (
             <div
               key={id}
@@ -49,6 +49,8 @@ export function TicketModal({ event, tickets }: Props) {
                       id: id,
                       price: price,
                       title: title,
+                      quantity: quantity,
+                      available_tickets: available_tickets,
                     })
                   }
                   className="btn text-xs"

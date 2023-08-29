@@ -13,7 +13,7 @@ type CartItemProps = {
 };
 
 export function CartItem({ item }: CartItemProps) {
-  const { removeFromCart, incrementCartItem, decreaseCartQuantity } =
+  const { removeFromCart, incrementCartItem, decreaseCartQuantity, addToCart } =
     useCartContext();
 
   return (
