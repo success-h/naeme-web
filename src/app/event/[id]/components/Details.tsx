@@ -36,7 +36,7 @@ export function Details(event: EventDataTypes) {
 
   return (
     <>
-      <div className="lg:ml-10 lg:col-span-3 lg:col-start-3 lg:col-end-6 max-lg:mt-10 max-lg:px-6 lg:px-2">
+      <div className="lg:ml-10 lg:col-span-3 lg:col-start-4 lg:col-end-7 max-lg:mt-10 max-lg:px-6 lg:px-2">
         <h1 className="text-4xl font-black">{event.title}</h1>
         {timeBetween.asSeconds() < 0 ? null : (
           <div data-aos="fade-up" className="mb-4">

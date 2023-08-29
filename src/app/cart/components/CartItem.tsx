@@ -9,6 +9,7 @@ type CartItemProps = {
     price: number;
     quantity: number;
     eventTitle: string;
+    available_tickets: number;
   };
 };
 
@@ -16,11 +17,15 @@ export function CartItem({ item }: CartItemProps) {
   const { removeFromCart, incrementCartItem, decreaseCartQuantity, addToCart } =
     useCartContext();
 
+  console.log({ item });
+
   return (
     <div className="border-b border-gray-300 pb-6 mt-10">
       <div className="flex items-center gap-x-5">
-        <h3 className="text-lg">{item.eventTitle}</h3>
-        <h3 className="text-sm badge bg-secondary">{item.title}</h3>
+        <h3 className="text-sm md:text-lg">{item.eventTitle}</h3>
+        <h3 className="text-sm uppercase">
+          {item.available_tickets} tickets Left
+        </h3>
       </div>
       <p className="my-2 text-xl">${item.price}</p>
       <div className="flex justify-between">
