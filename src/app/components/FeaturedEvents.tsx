@@ -9,10 +9,13 @@ export function FeaturedEvents({ data }: { data: EventDataTypes[] }) {
   return (
     <div className="pb-10 max-w-6xl mx-auto w-full">
       <div className="mt-14 px-7 flex justify-between items-center">
-        <h2 data-aos="fade-up" className="font-bold text-lg sm:text-2xl">
+        <h2 data-aos="zoom-in-up" className="font-bold text-lg sm:text-2xl">
           Featured Event
         </h2>
-        <div data-aos="fade-up" className="pl-7 flex justify-end items-center">
+        <div
+          data-aos="zoom-in-up"
+          className="pl-7 flex justify-end items-center"
+        >
           <Link href="/events/">
             <button className="btn">See More</button>
           </Link>
@@ -20,12 +23,12 @@ export function FeaturedEvents({ data }: { data: EventDataTypes[] }) {
       </div>
       <div className="hidden md:grid mt-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 place-items-center">
         {data?.slice(0, 9).map((event) => (
-          <div data-aos="fade-up" key={event.id}>
+          <div data-aos="zoom-in-up" key={event.id}>
             <Card event={event} />
           </div>
         ))}
       </div>
-      <div data-aos="fade-up" className="py-10 md:hidden mx-auto">
+      <div data-aos="zoom-in-up" className="py-10 md:hidden mx-auto">
         <Swiper
           modules={[Navigation, Autoplay]}
           autoplay={true}
@@ -40,7 +43,7 @@ export function FeaturedEvents({ data }: { data: EventDataTypes[] }) {
             <div key={event.id}>
               <SwiperSlide key={event.id}>
                 <div className=" grid place-content-center my-10">
-                  <Card data-aos="fade-up" event={event} />
+                  <Card data-aos="zoom-in-up" event={event} />
                 </div>
               </SwiperSlide>
             </div>

@@ -39,13 +39,13 @@ export function Details(event: EventDataTypes) {
       <div className="lg:ml-10 lg:col-span-3 lg:col-start-4 lg:col-end-7 max-lg:mt-10 max-lg:px-6 lg:px-2">
         <h1 className="text-4xl font-black">{event.title}</h1>
         {timeBetween.asSeconds() < 0 ? null : (
-          <div data-aos="fade-up" className="mb-4">
+          <div data-aos="zoom-in-up" className="mb-4">
             <Countdown date={end_date} className="text-xl" />
           </div>
         )}
         <>
           <div
-            data-aos="fade-up"
+            data-aos="zoom-in-up"
             className="my-3 w-full flex  text-[14px] justify-between items-center"
           >
             <Calendar className="mr-5" />
@@ -54,7 +54,7 @@ export function Details(event: EventDataTypes) {
             </p>
           </div>
           <div
-            data-aos="fade-up"
+            data-aos="zoom-in-up"
             className="w-full flex justify-between items-center"
           >
             <Location className="mr-5" />
@@ -63,7 +63,7 @@ export function Details(event: EventDataTypes) {
             </p>
           </div>
           <div
-            data-aos="fade-up"
+            data-aos="zoom-in-up"
             className="flex items-center max-lg:justify-between gap-x-10"
           >
             <div className="flex">
@@ -85,7 +85,7 @@ export function Details(event: EventDataTypes) {
           </div>
         </>
         <div
-          data-aos="fade-up"
+          data-aos="zoom-in-up"
           className="flex items-center max-lg:justify-between gap-x-10 my-5"
         >
           <div className="hidden lg:block text-wine-700 font-medium text-[24px]">
@@ -121,10 +121,9 @@ export function Details(event: EventDataTypes) {
             </div>
           )}
         </div>
-
         <div className="">
-          <h2 data-aos="fade-up">About</h2>
-          <article data-aos="fade-up" className="text-sm mt-2">
+          <h2 data-aos="zoom-in-up">About</h2>
+          <article data-aos="zoom-in-up" className="text-sm mt-2">
             {event.description.slice(0, 490)}
           </article>
         </div>
@@ -132,7 +131,7 @@ export function Details(event: EventDataTypes) {
           <div className="collapse bg-base-200 px-0">
             <input type="checkbox" />
             <div
-              data-aos="fade-up"
+              data-aos="zoom-in-up"
               className="collapse-title text-xl font-medium px-0 inline-flex justify-between items-center"
             >
               <p>Terms and Conditions for this event</p>
@@ -143,7 +142,45 @@ export function Details(event: EventDataTypes) {
             </div>
           </div>
         )}
-        <div className="lg:hidden p-5 flex flex-col left-0 right-0 fixed w-full rounded-t-2xl bg-gray-100  shadow-xl rounded-tl-xl bottom-0 z-20">
+        <div className="flex items-center justify-between mb-36">
+          <Image
+            data-aos="zoom-in-up"
+            alt="qrcode"
+            src={event.qr_code}
+            height={250}
+            width={250}
+            priority
+          />
+          <div className="hidden lg:block">
+            {timeBetween.asSeconds() < 0 ? (
+              <div className="sm:text-xl text-center justify-center">
+                Event Expired
+              </div>
+            ) : event.total_sold_tickets < event.total_ticket_count ? (
+              <button
+                onClick={() => {
+                  //@ts-ignore
+                  window?.modal_1.showModal();
+                }}
+                className="btn border-none bg-black text-white hover:bg-secondary my-2 px-10"
+              >
+                Get ticket+
+              </button>
+            ) : (
+              <button
+                disabled
+                color="rose-500"
+                className="btn btn-gray-200 my-2"
+              >
+                Tickets sold out
+              </button>
+            )}
+          </div>
+        </div>
+        <div
+          data-aos="zoom-in-up"
+          className="lg:hidden p-5 flex flex-col left-0 right-0 w-full rounded-t-2xl rounded-tl-xl bottom-0 z-20 mb-24"
+        >
           <>
             <div className="text-wine-700 mx-auto font-sans text-[14px] font-medium">
               {event.lowest_price === event.highest_price ? (
@@ -183,42 +220,6 @@ export function Details(event: EventDataTypes) {
               </button>
             )}
           </>
-        </div>
-        <div className="flex items-center justify-between mb-36">
-          <div>
-            <Image
-              alt=""
-              src={event.qr_code}
-              height={200}
-              width={200}
-              priority
-            />
-          </div>
-          <div className="hidden lg:block">
-            {timeBetween.asSeconds() < 0 ? (
-              <div className="sm:text-xl text-center justify-center">
-                Event Expired
-              </div>
-            ) : event.total_sold_tickets < event.total_ticket_count ? (
-              <button
-                onClick={() => {
-                  //@ts-ignore
-                  window?.modal_1.showModal();
-                }}
-                className="btn border-none bg-black text-white hover:bg-secondary my-2 px-10"
-              >
-                Get ticket+
-              </button>
-            ) : (
-              <button
-                disabled
-                color="rose-500"
-                className="btn btn-gray-200 my-2"
-              >
-                Tickets sold out
-              </button>
-            )}
-          </div>
         </div>
       </div>
       <TicketModal event={event} tickets={event.tickets} />

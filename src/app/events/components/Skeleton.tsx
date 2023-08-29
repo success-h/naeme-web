@@ -1,7 +1,7 @@
 export function Skeleton() {
   return (
     <div
-      data-aos="fade-up"
+      data-aos="zoom-in-up"
       className="card card-compact w-full max-w-96 h-80 pb-4 animate-pulse rounded-3xl"
     >
       <figure className="h-40 w-full bg-gray-200 animate-pulse"></figure>

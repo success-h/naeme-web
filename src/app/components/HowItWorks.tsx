@@ -47,7 +47,7 @@ export default function HowItWorks() {
       <div className="justify-between pt-10 grid grid-cols-2 sm:grid-cols-3 md:flex gap-10 md:flex-wrap  px-4 lg:px-0 my-20 mx-auto max-w-[1038px]">
         {imageUrl.map((i) => (
           <div
-            data-aos="fade-up"
+            data-aos="zoom-in-up"
             key={i.id}
             className="flex flex-col items-center justify-center"
           >
@@ -64,7 +64,7 @@ export default function HowItWorks() {
         ))}
       </div>
       <div className="max-w-6xl mx-auto w-full flex flex-col-reverse sm:grid sm:grid-cols-2">
-        <div data-aos="fade-up" className="justify-center flex">
+        <div data-aos="zoom-in-up" className="justify-center flex">
           <Image
             alt=""
             width={433}
@@ -76,21 +76,21 @@ export default function HowItWorks() {
         </div>
         <div className="px-10 flex flex-col items-center sm:items-start justify-center">
           <h1
-            data-aos="fade-up"
+            data-aos="zoom-in-up"
             className="max-w-[445px] text-2xl leading-tight sm:text-start sm:text-4xl text-primary font-extrabold"
           >
             The days of papers and cardboard events are long gone.
           </h1>
 
           <ul className="mt-7 max-w-[445px]">
-            <li data-aos="fade-up" className="mb-6">
+            <li data-aos="zoom-in-up" className="mb-6">
               <p>
                 We provide you easy access to events through our QR Code system.
                 You no longer need to type out a url to be able to access an
                 event details.
               </p>
             </li>
-            <li data-aos="fade-up">
+            <li data-aos="zoom-in-up">
               <p>
                 Easily validate the authenticity of a ticket by scanning it
                 through our secure{" "}
@@ -106,7 +106,7 @@ export default function HowItWorks() {
           <div className="flex flex-col lg:flex-row items-center justify-between max-w-screen-xl px-4 md:px-20 py-10 w-full h-full mx-auto">
             <div className="">
               <h2
-                data-aos="fade-up"
+                data-aos="zoom-in-up"
                 className="text-3xl md:text-5xl text-white"
               >
                 Planing to{" "}
@@ -115,7 +115,10 @@ export default function HowItWorks() {
                   host an event?
                 </span>
               </h2>
-              <p data-aos="fade-up" className="text-white max-w-xl mt-4 w-full">
+              <p
+                data-aos="zoom-in-up"
+                className="text-white max-w-xl mt-4 w-full"
+              >
                 Why create an event with us? we offer a seamless experience with
                 event creation and a{" "}
                 <span className="text-emerald-300">Unique QR-Code</span> you can
@@ -125,7 +128,7 @@ export default function HowItWorks() {
               </p>
               <Link
                 href="/terms-of-use"
-                data-aos="fade-up"
+                data-aos="zoom-in-up"
                 className="text-orange-300 font-extralight mt-10 cursor-pointer"
               >
                 Conditions apply*
@@ -134,7 +137,7 @@ export default function HowItWorks() {
             <Link
               prefetch={true}
               href="/create-event"
-              data-aos="fade-up"
+              data-aos="zoom-in-up"
               className="mt-10"
             >
               <button className="btn px-10 py-4 rounded-full border text-primary hover:text-white hover:border-white border-primary">

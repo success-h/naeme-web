@@ -24,7 +24,7 @@ export const Card = ({ event }: Props) => {
   return (
     <div
       onClick={showDetailsHandler}
-      data-aos="fade-up"
+      data-aos="zoom-in-up"
       className="card card-compact w-full max-w-sm h-96 cursor-pointer"
     >
       <figure>
