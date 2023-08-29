@@ -14,7 +14,7 @@ export const getEvents = async () => {
     }
     return data;
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };
 
@@ -51,13 +51,13 @@ export const getSearchedEvents = async (searchValue: string | undefined) => {
 export async function getUserTicket(id: string) {
   const response = await api.get(`/my-tickets/?booking_id=${id}`);
   const ticket = await response.data;
-  // // console.log({ ticket });
+  // // //console.log({ ticket });
   return ticket;
 }
 export async function getSingleTicket(id: string) {
   const response = await api.get(`/my-tickets/${id}`);
   const ticket = await response.data;
-  // // console.log({ ticket });
+  // // //console.log({ ticket });
   return ticket;
 }
 
@@ -80,7 +80,7 @@ export const getEventAndTicketData = async (user_id: string | undefined) => {
 
         return { eventData, ticketData };
       } catch (error) {
-        // console.log(error);
+        // //console.log(error);
       }
     }
   }

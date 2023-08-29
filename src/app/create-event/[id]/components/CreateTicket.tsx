@@ -60,7 +60,7 @@ export function CreateTicket({ id, access }: { id: string; access?: string }) {
   const onSubmit = async (data: FieldValues) => {
     setLoading(true);
     const { title, price, qty } = data;
-    // console.log({ data });
+    // //console.log({ data });
     const formData = new FormData();
     formData.append("price", price ?? price);
     formData.append("title", title);

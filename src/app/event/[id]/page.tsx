@@ -8,7 +8,7 @@ export async function generateMetadata({
     id: string;
   };
 }) {
-  console.log({ params });
+  //console.log({ params });
   try {
     return;
     const post = await getEvent(params.id);

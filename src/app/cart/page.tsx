@@ -88,7 +88,7 @@ const Cart = () => {
               process?.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
             )
             .then((response) => {
-              // console.log("Email sent successfully:", response);
+              // //console.log("Email sent successfully:", response);
             })
             .catch((error) => {
               // console.error("Error sending email:", error);
@@ -111,7 +111,7 @@ const Cart = () => {
               process?.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
             )
             .then((response) => {
-              console.log("Email sent successfully:", response);
+              // //console.log("Email sent successfully:", response);
             })
             .catch((error) => {
               console.error("Error sending email:", error);
@@ -125,12 +125,12 @@ const Cart = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+      // //console.log(error);
     }
   };
 
   const onSuccess = (reference: any) => {
-    console.log(cartItems);
+    //console.log(cartItems);
     if (reference.status === "success") {
       try {
         (async () => {
@@ -178,7 +178,7 @@ const Cart = () => {
                   process?.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
                 )
                 .then((response) => {
-                  // console.log("Email sent successfully:", response);
+                  // //console.log("Email sent successfully:", response);
                 })
                 .catch((error) => {
                   // console.error("Error sending email:", error);
@@ -197,7 +197,7 @@ const Cart = () => {
                   process?.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
                 )
                 .then((response) => {
-                  console.log("Email sent successfully:", response);
+                  //console.log("Email sent successfully:", response);
                 })
                 .catch((error) => {
                   console.error("Error sending email:", error);
@@ -207,12 +207,12 @@ const Cart = () => {
           }
         })();
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     }
   };
   const onClose = () => {
-    console.log("closed");
+    //console.log("closed");
   };
 
   const initializePayment = usePaystackPayment(config);

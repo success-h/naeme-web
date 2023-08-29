@@ -26,7 +26,7 @@ export function Details(event: EventDataTypes) {
     }
   }, []);
 
-  console.log(params);
+  //console.log(params);
   const end_date = moment(event.end_date + " " + event.start_time).format(
     "YYYY-MM-DD HH:mm:ss"
   );

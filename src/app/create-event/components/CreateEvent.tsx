@@ -87,7 +87,7 @@ function CreateEventComponent({ access }: { access: string | undefined }) {
   const onSubmit = async (data: DefaultValues) => {
     //@ts-ignore
     const image = selectedFile.target.files[0];
-    console.log("calles", image);
+    //console.log("calles", image);
     if (!image) {
       setErr("Image required");
       return;
@@ -134,11 +134,11 @@ function CreateEventComponent({ access }: { access: string | undefined }) {
           setLoading(false);
         } else {
           setLoading(false);
-          // console.log(data);
+          // //console.log(data);
         }
       } catch (error) {
         setLoading(false);
-        console.log(error);
+        //console.log(error);
         return error;
       }
     } else {
@@ -149,7 +149,7 @@ function CreateEventComponent({ access }: { access: string | undefined }) {
   //@ts-ignore
 
   function errorChecker(e) {
-    console.log({ e });
+    //console.log({ e });
   }
   return (
     <div className="max-w-screen-lg grid mx-auto">

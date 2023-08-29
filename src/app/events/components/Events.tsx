@@ -31,10 +31,10 @@ export function Events({ params }: Props) {
     try {
       if (nextPage) {
         setLoading(true);
-        // console.log({ nextPage });
+        // //console.log({ nextPage });
         const response = await fetch(nextPage);
         const data = await response.json();
-        console.log("inside:", { data });
+        //console.log("inside:", { data });
         if (data) {
           setNextPage(data.next);
           setEvents([...events, ...data.results]);
@@ -56,7 +56,7 @@ export function Events({ params }: Props) {
       setLoading(true);
       const data = await getSearchedEvents(input);
       if (data) {
-        console.log(data);
+        //console.log(data);
         setLoading(false);
         setEvents(data.results);
       }
@@ -85,7 +85,7 @@ export function Events({ params }: Props) {
         }
       }
       if (searchParams) {
-        console.log("search:", searchParams.search);
+        //console.log("search:", searchParams.search);
         setLoading(true);
         setInput(searchParams);
         const data = await getSearchedEvents(searchParams);

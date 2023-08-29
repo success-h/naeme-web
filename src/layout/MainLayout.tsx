@@ -19,7 +19,7 @@ export const MainLayout = ({ children }: Props) => {
       const data = await getUser();
       setUser(data.user);
     } catch (err) {
-      // // console.log(err);
+      // // //console.log(err);
     }
   }, []);
 

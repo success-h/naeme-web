@@ -32,7 +32,7 @@ export const Signin = () => {
       setLoading(false);
     } catch (err) {
       setLoading(false);
-      // console.log(err);
+      // //console.log(err);
     }
   };
 
@@ -62,7 +62,7 @@ export const Signin = () => {
                     signIn(credentialResponse.credential);
                   }}
                   onError={() => {
-                    // console.log('Login Failed');
+                    // //console.log('Login Failed');
                   }}
                 />
               </button>

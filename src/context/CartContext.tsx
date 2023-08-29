@@ -32,7 +32,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const getItemQuantity = (id: string) => {
     const qty = cartItems.find((item) => item.id === id)?.quantity || 0;
-    // // console.log(qty);
+    // // //console.log(qty);
     return qty;
   };
 
