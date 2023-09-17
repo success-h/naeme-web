@@ -12,5 +12,9 @@ export default async function sitemap() {
         lastModified: new Date(),
       };
     }) ?? [];
-  return [{ url: baseUrl, lastModified: new Date() }, ...eventUrls];
+  return [
+    { url: baseUrl, lastModified: new Date() },
+    { url: `${baseUrl}/events`, lastModified: new Date() },
+    ...eventUrls,
+  ];
 }
