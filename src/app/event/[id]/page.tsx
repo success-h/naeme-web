@@ -1,5 +1,6 @@
 import { getEvent } from "@/app/functions/functions";
 import { EventDetail } from "./components/EventDetail";
+import { EventDataTypes } from "../../../../typings";
 
 export async function generateMetadata({
   params,
@@ -8,28 +9,24 @@ export async function generateMetadata({
     id: string;
   };
 }) {
-  //console.log({ params });
   try {
-    return;
-    const post = await getEvent(params.id);
-    if (!post)
+    const event: EventDataTypes = await getEvent(params.id);
+    if (!event)
       return {
         title: "Not Found",
-        description: "The page you are looking for does not exist.",
+        description: "The event you are looking for does not exist.",
       };
-
     return {
-      title: post.title,
-      description: post.description,
+      title: event.title,
+      description: event.description,
       alternates: {
-        canonical: `/post/${post.slug}`,
+        canonical: `/event/${event.id}`,
       },
     };
   } catch (error) {
-    console.error(error);
     return {
       title: "Not Found",
-      description: "The page you are looking for does not exist.",
+      description: "The event you are looking for does not exist.",
     };
   }
 }

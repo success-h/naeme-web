@@ -11,11 +11,14 @@ import Loading from "./loading";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.naeme.app"),
   title: "Naeme Events - BOOK YOUR TICKETS SEAMLESSLY",
   description: "Discover amazing events happening around you.",
   keywords: ["Naeme Events", "Tickets", "Ticketing", "Booking"],
-  authors: [{ name: "Success Hycenth", url: "https://success-hy.vercel.app" }],
-  creator: "Success Hycenth",
+  verification: {
+    google:
+      "google-site-verification=tiYKhZrgpRhZsF1Ly0VMZ1JeTOxaSIl0pICVYQ0FfGI",
+  },
 };
 
 export default function RootLayout({
@@ -25,12 +28,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <meta
-          name="google-site-verification"
-          content="tiYKhZrgpRhZsF1Ly0VMZ1JeTOxaSIl0pICVYQ0FfGI"
-        />
-      </head>
       <body className={montserrat.className}>
         <Suspense fallback={<Loading />}>
           <UserProvider>
