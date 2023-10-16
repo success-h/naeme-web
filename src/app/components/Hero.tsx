@@ -13,9 +13,9 @@ export default async function Hero() {
 
   return (
     <>
-      <HeroSwiper data={...data.results} />
+      <HeroSwiper data={data.results} />
       <HowItWorks />
-      <FeaturedEvents data={...data.results} />
+      <FeaturedEvents data={data.results} />
     </>
   );
 }
