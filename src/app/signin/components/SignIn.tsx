@@ -1,11 +1,11 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { GoogleLogin } from "@react-oauth/google";
-import { useRouter } from "next/navigation";
+'use client';
+import React, { useEffect, useState } from 'react';
+import { GoogleLogin } from '@react-oauth/google';
+import { useRouter } from 'next/navigation';
 
-import { setCookie } from "cookies-next";
-import api from "../../../../api";
-import { useUserContext } from "@/hooks/useUser";
+import { setCookie } from 'cookies-next';
+import api from '../../../../api';
+import { useUserContext } from '@/hooks/useUser';
 
 export const Signin = () => {
   const [loading, setLoading] = useState(false);
@@ -21,8 +21,8 @@ export const Signin = () => {
       });
       const data = await response.data;
       if (response.status === 200) {
-        setCookie("access", data.tokens.access, { maxAge: 60 * 60 * 24 * 7 });
-        setCookie("refresh", data.tokens.refresh, {
+        setCookie('access', data.tokens.access, { maxAge: 60 * 60 * 24 * 7 });
+        setCookie('refresh', data.tokens.refresh, {
           maxAge: 60 * 60 * 24 * 30,
         });
         setUser(data);
@@ -46,7 +46,7 @@ export const Signin = () => {
         <div className="mt-4 flex flex-col content-center gap-4">
           <div
             className={`${
-              loading ? "rounded-xs  w-full my-3" : ""
+              loading ? 'rounded-xs  w-full my-3' : ''
             } rounded-xs w-full my-3 cursor-pointer flex flex-col gap-y-4 justify-center items-center py-3`}
           >
             {loading ? (
@@ -56,7 +56,6 @@ export const Signin = () => {
                 <GoogleLogin
                   size="large"
                   theme="filled_blue"
-                  auto_select={true}
                   onSuccess={(credentialResponse) => {
                     setLoading(true);
                     signIn(credentialResponse.credential);
